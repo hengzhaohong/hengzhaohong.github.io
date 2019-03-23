@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Hengzhao Hong">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="How to build a beautiful GitHub Page via Jekyll on Windows?">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/a-guidance-to-beautiful-jekyll-pages/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Hengzhao Hong&#39;s Space">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Hengzhao Hong&#39;s Space">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/a-guidance-to-beautiful-jekyll-pages/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Hengzhao Hong&#39;s Space">
+  <meta property="og:url" content="/post/a-guidance-to-beautiful-jekyll-pages/">
+  <meta property="og:title" content="A Guidance to Beautiful Jekyll Pages | Hengzhao Hong&#39;s Space">
+  <meta property="og:description" content="How to build a beautiful GitHub Page via Jekyll on Windows?"><meta property="og:image" content="/post/a-guidance-to-beautiful-jekyll-pages/featured.jpg">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-03-20T21:34:55&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-03-20T21:34:55&#43;08:00">
+  
+
+  
+
+  
+
+  <title>A Guidance to Beautiful Jekyll Pages | Hengzhao Hong&#39;s Space</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Hengzhao Hong&#39;s Space</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#tags">
+            
+            <span>Topics</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/post/a-guidance-to-beautiful-jekyll-pages/featured_hu3d03a01dcc18bc5be0e67db3d8d209a6_4348547_800x0_resize_q90_lanczos.jpg');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">A Guidance to Beautiful Jekyll Pages</h1>
+
+        
+        <p class="page-subtitle">GitHub Pages and Locally Developing Jekyll on Windows Platforms</p>
+        
+
+        
+
+
+
+<meta content="2019-03-20 21:34:55 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-20 21:34:55 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="/authors/hengzhao-hong/">Hengzhao Hong</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Mar 20, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/github/">GitHub</a>
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages&amp;url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f&amp;title=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f&amp;title=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages&amp;body=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/post/a-guidance-to-beautiful-jekyll-pages/featured_hu3d03a01dcc18bc5be0e67db3d8d209a6_4348547_680x500_fill_q90_lanczos_center.jpg" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">A Guidance to Beautiful Jekyll Pages</h1>
+
+  
+  <p class="page-subtitle">GitHub Pages and Locally Developing Jekyll on Windows Platforms</p>
+  
+
+  
+
+
+
+<meta content="2019-03-20 21:34:55 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-03-20 21:34:55 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="/authors/hengzhao-hong/">Hengzhao Hong</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Mar 20, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/github/">GitHub</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages&amp;url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f&amp;title=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f&amp;title=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=A%20Guidance%20to%20Beautiful%20Jekyll%20Pages&amp;body=%2fpost%2fa-guidance-to-beautiful-jekyll-pages%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>本文介绍了如何在 Windows 上使用 Jekyll 框架搭建 GitHub Pages 个人博客。</p>
+
+<blockquote>
+<p>使用 <em>Jekyll + GitHub Pages</em> ，可以在短时间内搭建出精美、个性的博客、项目网站或者线上简历等。我们只需要专注于编辑文章内容，将文章放入预设的模板（主题）中，再将全部文件提交到 <em>GitHub</em> 上，网站就会自动完成构建了。</p>
+</blockquote>
+
+<p>使用 Jekyll 搭建的博客案例：</p>
+
+<ul>
+<li><a href="https://zachholman.com/" target="_blank">Blog of Zach Holman</a></li>
+</ul>
+
+<h2 id="搭建-github-pages-极速尝鲜">搭建 GitHub Pages - 极速尝鲜</h2>
+
+<p>如果你是零基础的话，现在用最快最简单的方法搭建一个 GitHub Page 吧！</p>
+
+<p>如果想更加个性化地使用 GitHub Page，可以直接跳过这一步。</p>
+
+<blockquote>
+<p>本地编辑的技能可以尝鲜之后再慢慢补上嘛。</p>
+</blockquote>
+
+<h3 id="第一步-获取-jekyll-模板-生成网站">第一步：获取 Jekyll 模板，生成网站</h3>
+
+<p>如果没有 GitHub 账号，先在 <a href="https://github.com/" target="_blank">GitHub</a> 上注册一个。</p>
+
+<p>登录 GitHub，从以下 Jekyll 官方收录的主题中选择一个中意的样式，然后打开其 GitHub 项目界面。</p>
+
+<ul>
+<li><a href="http://jekyllthemes.org/" target="_blank">http://jekyllthemes.org/</a></li>
+<li><a href="https://jekyllthemes.io/" target="_blank">https://jekyllthemes.io/</a></li>
+</ul>
+
+<p>以 <a href="http://jekyllthemes.org/themes/kiko-plus/" target="_blank">Kiko Plus 主题</a>为例，点击 Homepage 找到<a href="https://github.com/aweekj/kiko-now" target="_blank">项目主页</a>。</p>
+
+<blockquote>
+<p>也可以进入示例（Demo）页面，点击页面最下方的 GitHub 按钮进入项目主页。大多数主题的项目主页都可以这样找到。</p>
+</blockquote>
+
+<p>进入 kiko-now 项目主页，根目录文件结构应该类似这样：</p>
+
+<p><img src="kiko-now-github.png" alt="kiko-now项目主页" /></p>
+
+<p>点击 Fork 按钮，从而将这个库复制到自己的远程库中。</p>
+
+<p>进入自己的 kiko-now 库，在 Settings 里将库名改为 <code>&lt;你的用户名&gt;.github.io</code>，比如 <code>honghzh.github.io</code>。</p>
+
+<blockquote>
+<p>此时，GitHub 会自动识别这个库，并基于库里的文件（也就是你刚刚“复制”的 Jekyll 主题模板文件）自动构建你的 GitHub Page。</p>
+
+<p>在许多主题项目的 README.md 中也会有使用说明。</p>
+</blockquote>
+
+<p>等待片刻，直接访问 <code>&lt;你的用户名&gt;.github.io</code>，就可以看到自己的博客了。</p>
+
+<h3 id="第二步-定制博客信息">第二步：定制博客信息</h3>
+
+<p>在你的网站项目库中，打开根目录的 <code>_config.yml</code>，按照文件中的提示修改文件，把原来的博客信息（姓名、邮箱、github地址、文章网址格式等）改成你自己想要的配置信息，然后提交（Commit）即可。</p>
+
+<h3 id="第三步-写文章">第三步：写文章</h3>
+
+<p>在你的网站项目库 <code>_posts</code> 文件夹中，新建一个 <code>.md</code> 文件，模仿原有的示例文件编辑文件头部（配置标题、发表时间等，<a href="http://jekyllrb.com/docs/frontmatter/" target="_blank">常用配置规则</a>），然后使用 Markdown 语言写文章（<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown 简明语法规则</a>），保存提交（Commit）即可。</p>
+
+<div class="alert alert-note">
+  <div>
+    <p>每篇文章的 markdown 文件都必须命名为 <code>year-month-day-title.md</code> 格式，这是 Jekyll 框架所要求的。</p>
+
+  </div>
+</div>
+
+
+<p>等待片刻，直接访问 <code>&lt;你的用户名&gt;.github.io</code> ，会发现博客信息已经变味你自己的，而且文章也更新了。</p>
+
+<blockquote>
+<p>如果文章没有出现，可能是文件命名有误，或者发表时间有误（或时区问题导致现在尚未到发表时间）。</p>
+</blockquote>
+
+<p><strong>现在你已经成功使用 Jekyll + GitHub Pages 搭建出个人网站了！</strong></p>
+
+<p>如果你还想：</p>
+
+<ul>
+<li>在本地用你喜欢的编辑器编辑文章</li>
+<li>在本地实时预览文章效果和博客修改效果（本地预览比 GitHub 在线构建快得多）</li>
+<li>在已有主题（或空白主题）的基础上，设计自己的博客样式</li>
+<li>喜欢那种随心支配所有代码、掌控全局的感觉（比如我）</li>
+</ul>
+
+<p>那么请看下面的<strong>完整版</strong>：</p>
+
+<h2 id="jekyll-github-pages-本地调试与线上搭建">Jekyll + GitHub Pages 本地调试与线上搭建</h2>
+
+<h3 id="在-github-上的准备">在 GitHub 上的准备</h3>
+
+<p>首先，在 <a href="https://github.com/" target="_blank">GitHub</a> 上注册一个账号。</p>
+
+<blockquote>
+<p>注意：接下来的步骤与前一节（极速尝鲜版）不同</p>
+</blockquote>
+
+<p>登录 GitHub 后，访问 <a href="https://github.com/new" target="_blank">https://github.com/new</a> 可以开始新建一个库（或点击顶部 + 号按钮 -&gt; New repository），库名（Repository name）必须设为 <code>&lt;你的用户名&gt;.github.io</code>，选择库的类型为公共库（Public），从而创建一个新库，用于在 GitHub 上存放你的网站。</p>
+
+<blockquote>
+<p>如果这个库已经存在，那么需要把原库先改名或删除。</p>
+</blockquote>
+
+<h3 id="本地调试所需的准备">本地调试所需的准备</h3>
+
+<p>因为 Jekyll 框架是基于 Ruby 语言构建的，所以，如果要在本地编辑和预览，你的计算机显然也要学会 Ruby 语言。</p>
+
+<h4 id="安装-ruby">安装 Ruby</h4>
+
+<p>在 Windows 系统安装 Ruby 很简单。直接访问 <a href="https://rubyinstaller.org/downloads/" target="_blank">Ruby Installer for Windows</a>下载安装程序，注意要下载 Ruby <strong>+ DevKit</strong> 的集成版本，其中 DevKit 是 Ruby 的开发工具包，后续安装 Jekyll 框架时必须用到它。</p>
+
+<p>然后，一路安装即可，安装完成的最后会询问是否安装开发者工具（MSYS2 Devkit），选择“是”。</p>
+
+<p>安装 MSYS2 Devkit 时，会询问安装的范围，选择 1 或 3 安装整个开发工具包（MSYS2 toolchain）。</p>
+
+<h4 id="修改-rubygems-的默认下载源">修改 RubyGems 的默认下载源</h4>
+
+<blockquote>
+<p>Ruby 安装完毕后，需要使用 Ruby 自带的包管理工具（RubyGems）安装 Jekyll 包。</p>
+</blockquote>
+
+<p>RubyGems 默认下载源在国外，由于众所周知的原因，国内下载 Jekyll 等包的速度奇慢，因此需要先把下载源改为国内的官方镜像。</p>
+
+<p>打开命令窗口（可以按Shift后从右键菜单打开），依次执行：</p>
+
+<pre><code class="language-bash">gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+gem sources -l
+# 将显示 https://gems.ruby-china.com
+# 确保只有 gems.ruby-china.com
+</code></pre>
+
+<p>修改完成。</p>
+
+<h4 id="安装-jekyll">安装 Jekyll</h4>
+
+<blockquote>
+<p>因为我们要用 GitHub Page 构建网站，所以这里强烈推荐 <a href="https://github.com/github/pages-gem" target="_blank">GitHub Pages Gem</a> 项目提供的 github-pages 包，它集成了 Jekyll 和 Jekyll 所需的所有依赖包（Dependencies），并且所有包都维护在 GitHub Page 支持的版本下。</p>
+</blockquote>
+
+<p>推荐直接安装 github-pages 包（其中集成了 Jekyll），命令是：</p>
+
+<pre><code class="language-bash">gem install github-pages
+</code></pre>
+
+<p>这样就可以避开很多的版本依赖和版本支持的问题。</p>
+
+<h4 id="安装-git">安装 Git</h4>
+
+<blockquote>
+<p>Git 是一个版本控制工具，Git 在这里用于关联和管理 GitHub 上刚才新建的远程库和本地的网站文件夹（本地库）。</p>
+
+<p>Git 是 GitHub 存在的基石。被 Git 工具所维护的文件夹叫做“库”（Repository），本地的文件夹就是本地库，在服务器上的文件夹就是远程库。GitHub 只是一个托管远程库，方便远程协作和储存版本的平台罢了。</p>
+</blockquote>
+
+<p>从 <a href="https://git-scm.com/" target="_blank">Git 官网</a> 上下载 Git 并安装即可。安装完成后，右键菜单会多出 Git Bash Here，点击后可以打开 Git 命令行，后续会在里面运行 <code>git &lt;命令&gt;</code>。</p>
+
+<h4 id="安装文本编辑器">安装文本编辑器</h4>
+
+<blockquote>
+<p>文本编辑器是一种编程工具，主流的编辑器有 NotePad++, Vs Code, Sublime Text 等，它们可以在编辑代码时提供高亮、提示、编译等功能。</p>
+</blockquote>
+
+<p>如果本地没有文本编辑器，推荐安装<a href="https://code.visualstudio.com/" target="_blank">VS Code</a>，之后将使用文本编辑器打开/编辑本地的网站文件。</p>
+
+<h2 id="本地调试">本地调试</h2>
+
+<p>从以下 Jekyll 官方收录的主题中选择一个中意的样式，然后打开其 GitHub 项目界面。</p>
+
+<ul>
+<li><a href="http://jekyllthemes.org/" target="_blank">http://jekyllthemes.org/</a></li>
+<li><a href="https://jekyllthemes.io/" target="_blank">https://jekyllthemes.io/</a></li>
+</ul>
+
+<p>使用 <code>git clone</code> 命令将主题项目下载到本地。</p>
+
+<p>以 <code>kiko-now</code> 项目为例，首先在项目主页复制 <code>git clone</code> 的目标地址：</p>
+
+<p><img src="clone.png" alt="从 kiko-now 项目主页获取地址" /></p>
+
+<p><img src="./clone2.png" alt="从 kiko-now 项目主页获取地址" /></p>
+
+<p>然后在本地<code>右键 - Git Bash Here</code>，执行 git 命令：<code>git clone &lt;目标地址&gt;</code> 即可：</p>
+
+<pre><code class="language-bash">git clone https://github.com/aweekj/kiko-now.git
+</code></pre>
+
+<p>在项目根目录，命令行运行 <code>jekyll serve</code>，然后在浏览器地址栏中输入 <code>localhost:4000</code> 即可访问本地预览。</p>
+
+<p>在命令行窗口连续按 <code>Ctrl+C</code> ，再输入 <code>y</code> 确认退出，即可退出本地预览。</p>
+
+<h2 id="配置博客信息-写文章">配置博客信息、写文章</h2>
+
+<p>修改根目录的 <code>_config.yml</code>，即可配置自己的博客信息。注意，这个文件修改保存后，需要重新运行 <code>jekyll serve</code> 才能看到修改效果。</p>
+
+<p>在 <code>_post</code> 文件夹下新建 <code>.md</code> 文件，按原有示例文件的格式输入文件头部（配置标题、发表时间等，<a href="http://jekyllrb.com/docs/frontmatter/" target="_blank">常用配置规则</a>），然后使用 Markdown 语言写文章（<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown 简明语法规则</a>），保存即可。</p>
+
+<div class="alert alert-note">
+  <div>
+    <p>每篇文章的 markdown 文件都必须命名为 <code>year-month-day-title.md</code> 格式，这是 Jekyll 框架所要求的。</p>
+
+  </div>
+</div>
+
+
+<p>文章编辑过程中，可以随时保存，并刷新 <code>localhost:4000</code> 查看最新的预览。</p>
+
+<h2 id="编译">编译</h2>
+
+<p>可选步骤：命令行 <code>jekyll build</code> 将编译网站文件，编译好的网站文件默认位于根目录的 <code>_site</code> 文件夹中。</p>
+
+<h2 id="提交生成-github-page">提交生成 GitHub Page</h2>
+
+<p>提交到 GitHub 上的两种形式：</p>
+
+<ul>
+<li>可以直接将 <code>_site</code> 文件夹内的文件提交到 GitHub（需先用 <code>jekyll build</code> 编译）。</li>
+<li>也可以将整个网站文件夹提交上去（此时无需用 <code>jekyll build</code> 编译）。</li>
+</ul>
+
+<p>方法：</p>
+
+<ol>
+<li>前期准备时，在 GitHub 上有一个名为 <code>&lt;你的用户名&gt;.github.io</code> 的库，现在将它 <code>git clone</code> 克隆到本地（在模板文件夹的外部），<strong>作为本地网站文件夹</strong>。</li>
+<li>按上述两种形式中的一种，将所需文件复制进刚才 <code>git clone</code> 的文件夹内。</li>
+
+<li><p>在<strong>本地网站文件夹</strong>内，<code>右键 - git bash here</code>，依次执行下列命令：</p>
+
+<pre><code class="language-bash">git add .
+git commit -m &quot;&lt;提交版本的名字，自定义&gt;&quot;
+git push origin master
+</code></pre></li>
+</ol>
+
+<blockquote>
+<ul>
+<li>如果复制文件到本地网站库时，你是将整个主题项目库复制进去的，那么以后可以直接在本地网站库中修改、预览，最后执行以上三条命令，即可将修改推送到自己的 GitHub 上。</li>
+<li>如果只复制 <code>_site</code> 文件夹，那么需要在主题项目库中编辑、预览，然后重复上述方法来更新网站。</li>
+</ul>
+</blockquote>
+
+<p>片刻之后，直接访问 <code>&lt;你的用户名&gt;.github.io</code> 即可查看你的博客网站，效果与本地预览相同（除某些特殊插件效果外）。</p>
+
+<p>Well done !</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/jekyll/">Jekyll</a>
+  
+  <a class="badge badge-light" href="/tags/blog/">Blog</a>
+  
+</div>
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy;Hengzhao Hong 2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hengzhao Hong&#39;s Space on Hengzhao Hong&#39;s Space</title>
+    <link>/</link>
+    <description>Recent content in Hengzhao Hong&#39;s Space on Hengzhao Hong&#39;s Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;Hengzhao Hong 2019</copyright>
+    <lastBuildDate>Wed, 20 Mar 2019 21:34:55 +0800</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A Guidance to Beautiful Jekyll Pages</title>
+      <link>/post/a-guidance-to-beautiful-jekyll-pages/</link>
+      <pubDate>Wed, 20 Mar 2019 21:34:55 +0800</pubDate>
+      
+      <guid>/post/a-guidance-to-beautiful-jekyll-pages/</guid>
+      <description>
+
+&lt;p&gt;本文介绍了如何在 Windows 上使用 Jekyll 框架搭建 GitHub Pages 个人博客。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;使用 &lt;em&gt;Jekyll + GitHub Pages&lt;/em&gt; ，可以在短时间内搭建出精美、个性的博客、项目网站或者线上简历等。我们只需要专注于编辑文章内容，将文章放入预设的模板（主题）中，再将全部文件提交到 &lt;em&gt;GitHub&lt;/em&gt; 上，网站就会自动完成构建了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;使用 Jekyll 搭建的博客案例：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zachholman.com/&#34; target=&#34;_blank&#34;&gt;Blog of Zach Holman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;搭建-github-pages-极速尝鲜&#34;&gt;搭建 GitHub Pages - 极速尝鲜&lt;/h2&gt;
+
+&lt;p&gt;如果你是零基础的话，现在用最快最简单的方法搭建一个 GitHub Page 吧！&lt;/p&gt;
+
+&lt;p&gt;如果想更加个性化地使用 GitHub Page，可以直接跳过这一步。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;本地编辑的技能可以尝鲜之后再慢慢补上嘛。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;第一步-获取-jekyll-模板-生成网站&#34;&gt;第一步：获取 Jekyll 模板，生成网站&lt;/h3&gt;
+
+&lt;p&gt;如果没有 GitHub 账号，先在 &lt;a href=&#34;https://github.com/&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; 上注册一个。&lt;/p&gt;
+
+&lt;p&gt;登录 GitHub，从以下 Jekyll 官方收录的主题中选择一个中意的样式，然后打开其 GitHub 项目界面。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jekyllthemes.org/&#34; target=&#34;_blank&#34;&gt;http://jekyllthemes.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jekyllthemes.io/&#34; target=&#34;_blank&#34;&gt;https://jekyllthemes.io/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以 &lt;a href=&#34;http://jekyllthemes.org/themes/kiko-plus/&#34; target=&#34;_blank&#34;&gt;Kiko Plus 主题&lt;/a&gt;为例，点击 Homepage 找到&lt;a href=&#34;https://github.com/aweekj/kiko-now&#34; target=&#34;_blank&#34;&gt;项目主页&lt;/a&gt;。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;也可以进入示例（Demo）页面，点击页面最下方的 GitHub 按钮进入项目主页。大多数主题的项目主页都可以这样找到。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;进入 kiko-now 项目主页，根目录文件结构应该类似这样：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;kiko-now-github.png&#34; alt=&#34;kiko-now项目主页&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击 Fork 按钮，从而将这个库复制到自己的远程库中。&lt;/p&gt;
+
+&lt;p&gt;进入自己的 kiko-now 库，在 Settings 里将库名改为 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt;，比如 &lt;code&gt;honghzh.github.io&lt;/code&gt;。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;此时，GitHub 会自动识别这个库，并基于库里的文件（也就是你刚刚“复制”的 Jekyll 主题模板文件）自动构建你的 GitHub Page。&lt;/p&gt;
+
+&lt;p&gt;在许多主题项目的 README.md 中也会有使用说明。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;等待片刻，直接访问 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt;，就可以看到自己的博客了。&lt;/p&gt;
+
+&lt;h3 id=&#34;第二步-定制博客信息&#34;&gt;第二步：定制博客信息&lt;/h3&gt;
+
+&lt;p&gt;在你的网站项目库中，打开根目录的 &lt;code&gt;_config.yml&lt;/code&gt;，按照文件中的提示修改文件，把原来的博客信息（姓名、邮箱、github地址、文章网址格式等）改成你自己想要的配置信息，然后提交（Commit）即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;第三步-写文章&#34;&gt;第三步：写文章&lt;/h3&gt;
+
+&lt;p&gt;在你的网站项目库 &lt;code&gt;_posts&lt;/code&gt; 文件夹中，新建一个 &lt;code&gt;.md&lt;/code&gt; 文件，模仿原有的示例文件编辑文件头部（配置标题、发表时间等，&lt;a href=&#34;http://jekyllrb.com/docs/frontmatter/&#34; target=&#34;_blank&#34;&gt;常用配置规则&lt;/a&gt;），然后使用 Markdown 语言写文章（&lt;a href=&#34;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&#34; target=&#34;_blank&#34;&gt;Markdown 简明语法规则&lt;/a&gt;），保存提交（Commit）即可。&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;每篇文章的 markdown 文件都必须命名为 &lt;code&gt;year-month-day-title.md&lt;/code&gt; 格式，这是 Jekyll 框架所要求的。&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;等待片刻，直接访问 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt; ，会发现博客信息已经变味你自己的，而且文章也更新了。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果文章没有出现，可能是文件命名有误，或者发表时间有误（或时区问题导致现在尚未到发表时间）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;现在你已经成功使用 Jekyll + GitHub Pages 搭建出个人网站了！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你还想：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在本地用你喜欢的编辑器编辑文章&lt;/li&gt;
+&lt;li&gt;在本地实时预览文章效果和博客修改效果（本地预览比 GitHub 在线构建快得多）&lt;/li&gt;
+&lt;li&gt;在已有主题（或空白主题）的基础上，设计自己的博客样式&lt;/li&gt;
+&lt;li&gt;喜欢那种随心支配所有代码、掌控全局的感觉（比如我）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那么请看下面的&lt;strong&gt;完整版&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;h2 id=&#34;jekyll-github-pages-本地调试与线上搭建&#34;&gt;Jekyll + GitHub Pages 本地调试与线上搭建&lt;/h2&gt;
+
+&lt;h3 id=&#34;在-github-上的准备&#34;&gt;在 GitHub 上的准备&lt;/h3&gt;
+
+&lt;p&gt;首先，在 &lt;a href=&#34;https://github.com/&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; 上注册一个账号。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意：接下来的步骤与前一节（极速尝鲜版）不同&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;登录 GitHub 后，访问 &lt;a href=&#34;https://github.com/new&#34; target=&#34;_blank&#34;&gt;https://github.com/new&lt;/a&gt; 可以开始新建一个库（或点击顶部 + 号按钮 -&amp;gt; New repository），库名（Repository name）必须设为 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt;，选择库的类型为公共库（Public），从而创建一个新库，用于在 GitHub 上存放你的网站。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果这个库已经存在，那么需要把原库先改名或删除。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;本地调试所需的准备&#34;&gt;本地调试所需的准备&lt;/h3&gt;
+
+&lt;p&gt;因为 Jekyll 框架是基于 Ruby 语言构建的，所以，如果要在本地编辑和预览，你的计算机显然也要学会 Ruby 语言。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装-ruby&#34;&gt;安装 Ruby&lt;/h4&gt;
+
+&lt;p&gt;在 Windows 系统安装 Ruby 很简单。直接访问 &lt;a href=&#34;https://rubyinstaller.org/downloads/&#34; target=&#34;_blank&#34;&gt;Ruby Installer for Windows&lt;/a&gt;下载安装程序，注意要下载 Ruby &lt;strong&gt;+ DevKit&lt;/strong&gt; 的集成版本，其中 DevKit 是 Ruby 的开发工具包，后续安装 Jekyll 框架时必须用到它。&lt;/p&gt;
+
+&lt;p&gt;然后，一路安装即可，安装完成的最后会询问是否安装开发者工具（MSYS2 Devkit），选择“是”。&lt;/p&gt;
+
+&lt;p&gt;安装 MSYS2 Devkit 时，会询问安装的范围，选择 1 或 3 安装整个开发工具包（MSYS2 toolchain）。&lt;/p&gt;
+
+&lt;h4 id=&#34;修改-rubygems-的默认下载源&#34;&gt;修改 RubyGems 的默认下载源&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Ruby 安装完毕后，需要使用 Ruby 自带的包管理工具（RubyGems）安装 Jekyll 包。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;RubyGems 默认下载源在国外，由于众所周知的原因，国内下载 Jekyll 等包的速度奇慢，因此需要先把下载源改为国内的官方镜像。&lt;/p&gt;
+
+&lt;p&gt;打开命令窗口（可以按Shift后从右键菜单打开），依次执行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+gem sources -l
+# 将显示 https://gems.ruby-china.com
+# 确保只有 gems.ruby-china.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改完成。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装-jekyll&#34;&gt;安装 Jekyll&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;因为我们要用 GitHub Page 构建网站，所以这里强烈推荐 &lt;a href=&#34;https://github.com/github/pages-gem&#34; target=&#34;_blank&#34;&gt;GitHub Pages Gem&lt;/a&gt; 项目提供的 github-pages 包，它集成了 Jekyll 和 Jekyll 所需的所有依赖包（Dependencies），并且所有包都维护在 GitHub Page 支持的版本下。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;推荐直接安装 github-pages 包（其中集成了 Jekyll），命令是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gem install github-pages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样就可以避开很多的版本依赖和版本支持的问题。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装-git&#34;&gt;安装 Git&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Git 是一个版本控制工具，Git 在这里用于关联和管理 GitHub 上刚才新建的远程库和本地的网站文件夹（本地库）。&lt;/p&gt;
+
+&lt;p&gt;Git 是 GitHub 存在的基石。被 Git 工具所维护的文件夹叫做“库”（Repository），本地的文件夹就是本地库，在服务器上的文件夹就是远程库。GitHub 只是一个托管远程库，方便远程协作和储存版本的平台罢了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;从 &lt;a href=&#34;https://git-scm.com/&#34; target=&#34;_blank&#34;&gt;Git 官网&lt;/a&gt; 上下载 Git 并安装即可。安装完成后，右键菜单会多出 Git Bash Here，点击后可以打开 Git 命令行，后续会在里面运行 &lt;code&gt;git &amp;lt;命令&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装文本编辑器&#34;&gt;安装文本编辑器&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;文本编辑器是一种编程工具，主流的编辑器有 NotePad++, Vs Code, Sublime Text 等，它们可以在编辑代码时提供高亮、提示、编译等功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果本地没有文本编辑器，推荐安装&lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34;&gt;VS Code&lt;/a&gt;，之后将使用文本编辑器打开/编辑本地的网站文件。&lt;/p&gt;
+
+&lt;h2 id=&#34;本地调试&#34;&gt;本地调试&lt;/h2&gt;
+
+&lt;p&gt;从以下 Jekyll 官方收录的主题中选择一个中意的样式，然后打开其 GitHub 项目界面。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jekyllthemes.org/&#34; target=&#34;_blank&#34;&gt;http://jekyllthemes.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jekyllthemes.io/&#34; target=&#34;_blank&#34;&gt;https://jekyllthemes.io/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用 &lt;code&gt;git clone&lt;/code&gt; 命令将主题项目下载到本地。&lt;/p&gt;
+
+&lt;p&gt;以 &lt;code&gt;kiko-now&lt;/code&gt; 项目为例，首先在项目主页复制 &lt;code&gt;git clone&lt;/code&gt; 的目标地址：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;clone.png&#34; alt=&#34;从 kiko-now 项目主页获取地址&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./clone2.png&#34; alt=&#34;从 kiko-now 项目主页获取地址&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后在本地&lt;code&gt;右键 - Git Bash Here&lt;/code&gt;，执行 git 命令：&lt;code&gt;git clone &amp;lt;目标地址&amp;gt;&lt;/code&gt; 即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git clone https://github.com/aweekj/kiko-now.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在项目根目录，命令行运行 &lt;code&gt;jekyll serve&lt;/code&gt;，然后在浏览器地址栏中输入 &lt;code&gt;localhost:4000&lt;/code&gt; 即可访问本地预览。&lt;/p&gt;
+
+&lt;p&gt;在命令行窗口连续按 &lt;code&gt;Ctrl+C&lt;/code&gt; ，再输入 &lt;code&gt;y&lt;/code&gt; 确认退出，即可退出本地预览。&lt;/p&gt;
+
+&lt;h2 id=&#34;配置博客信息-写文章&#34;&gt;配置博客信息、写文章&lt;/h2&gt;
+
+&lt;p&gt;修改根目录的 &lt;code&gt;_config.yml&lt;/code&gt;，即可配置自己的博客信息。注意，这个文件修改保存后，需要重新运行 &lt;code&gt;jekyll serve&lt;/code&gt; 才能看到修改效果。&lt;/p&gt;
+
+&lt;p&gt;在 &lt;code&gt;_post&lt;/code&gt; 文件夹下新建 &lt;code&gt;.md&lt;/code&gt; 文件，按原有示例文件的格式输入文件头部（配置标题、发表时间等，&lt;a href=&#34;http://jekyllrb.com/docs/frontmatter/&#34; target=&#34;_blank&#34;&gt;常用配置规则&lt;/a&gt;），然后使用 Markdown 语言写文章（&lt;a href=&#34;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&#34; target=&#34;_blank&#34;&gt;Markdown 简明语法规则&lt;/a&gt;），保存即可。&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;每篇文章的 markdown 文件都必须命名为 &lt;code&gt;year-month-day-title.md&lt;/code&gt; 格式，这是 Jekyll 框架所要求的。&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;文章编辑过程中，可以随时保存，并刷新 &lt;code&gt;localhost:4000&lt;/code&gt; 查看最新的预览。&lt;/p&gt;
+
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+
+&lt;p&gt;可选步骤：命令行 &lt;code&gt;jekyll build&lt;/code&gt; 将编译网站文件，编译好的网站文件默认位于根目录的 &lt;code&gt;_site&lt;/code&gt; 文件夹中。&lt;/p&gt;
+
+&lt;h2 id=&#34;提交生成-github-page&#34;&gt;提交生成 GitHub Page&lt;/h2&gt;
+
+&lt;p&gt;提交到 GitHub 上的两种形式：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可以直接将 &lt;code&gt;_site&lt;/code&gt; 文件夹内的文件提交到 GitHub（需先用 &lt;code&gt;jekyll build&lt;/code&gt; 编译）。&lt;/li&gt;
+&lt;li&gt;也可以将整个网站文件夹提交上去（此时无需用 &lt;code&gt;jekyll build&lt;/code&gt; 编译）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;方法：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;前期准备时，在 GitHub 上有一个名为 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt; 的库，现在将它 &lt;code&gt;git clone&lt;/code&gt; 克隆到本地（在模板文件夹的外部），&lt;strong&gt;作为本地网站文件夹&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;按上述两种形式中的一种，将所需文件复制进刚才 &lt;code&gt;git clone&lt;/code&gt; 的文件夹内。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在&lt;strong&gt;本地网站文件夹&lt;/strong&gt;内，&lt;code&gt;右键 - git bash here&lt;/code&gt;，依次执行下列命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git add .
+git commit -m &amp;quot;&amp;lt;提交版本的名字，自定义&amp;gt;&amp;quot;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如果复制文件到本地网站库时，你是将整个主题项目库复制进去的，那么以后可以直接在本地网站库中修改、预览，最后执行以上三条命令，即可将修改推送到自己的 GitHub 上。&lt;/li&gt;
+&lt;li&gt;如果只复制 &lt;code&gt;_site&lt;/code&gt; 文件夹，那么需要在主题项目库中编辑、预览，然后重复上述方法来更新网站。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;片刻之后，直接访问 &lt;code&gt;&amp;lt;你的用户名&amp;gt;.github.io&lt;/code&gt; 即可查看你的博客网站，效果与本地预览相同（除某些特殊插件效果外）。&lt;/p&gt;
+
+&lt;p&gt;Well done !&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Useful Commands of Git</title>
+      <link>/post/useful-commands-of-git/</link>
+      <pubDate>Sat, 16 Feb 2019 11:02:22 +0800</pubDate>
+      
+      <guid>/post/useful-commands-of-git/</guid>
+      <description>
+
+&lt;p&gt;本篇总结了 &lt;a href=&#34;https://git-scm.com/&#34; target=&#34;_blank&#34;&gt;Git&lt;/a&gt; 使用过程中主要将用到的命令和其它一些问题的解决方法，包括：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Git 分支管理&lt;/li&gt;
+&lt;li&gt;本地仓库-远程仓库的拉取/推送/关联&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.gitignore&lt;/code&gt; 文件。&lt;/li&gt;
+&lt;li&gt;用户邮箱配置&lt;/li&gt;
+&lt;li&gt;SSH Key 配置&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;分支&#34;&gt;分支&lt;/h2&gt;
+
+&lt;p&gt;创建 Git 分支，可以在原来的版本链上衍生出一条新的、独立的版本链，在新链上进行开发，再合并到主链中，这是协同开发和版本控制的精髓。&lt;/p&gt;
+
+&lt;h3 id=&#34;增删分支&#34;&gt;增删分支&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 创建分支
+git branch new_branch_name
+# 切换分支
+git checkout branch_name
+# 创建分支，并切换到新分支
+git checkout -b new_branch_name
+# 合并分支
+git merge branch_name
+# 删除分支
+git branch -d branch_name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;查分支&#34;&gt;查分支&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 检查分支版本
+git log --oneline --decorate
+# 查看分支分叉历史
+git log --oneline --decorate --graph --all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;从另一个分支同步特定文件&#34;&gt;从另一个分支同步特定文件&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;git checkout &amp;lt;另一个分支名&amp;gt; &amp;lt;特定文件名&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;远程库推送-拉取&#34;&gt;远程库推送、拉取&lt;/h2&gt;
+
+&lt;p&gt;本节内容为如何关联本地库与远程库，将你的代码托管在网络上，作为备份或和合作者协同开发。&lt;/p&gt;
+
+&lt;h3 id=&#34;远程库查询-增加-删除&#34;&gt;远程库查询、增加、删除&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 查询
+git remote -v
+# 增加
+git remote add origin &amp;lt;你的项目地址&amp;gt;
+# 删除
+git remote rm origin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;推送到远程库&#34;&gt;推送到远程库&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git push &amp;lt;远程主机名&amp;gt; &amp;lt;本地分支名&amp;gt;:&amp;lt;远程分支名&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;首次推送并关联分支&#34;&gt;首次推送并关联分支&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;从远程库拉取&#34;&gt;从远程库拉取&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;git pull = git fetch + git merge&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git pull &amp;lt;远程主机名&amp;gt; &amp;lt;远程分支名&amp;gt;:&amp;lt;本地分支名&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果报错：&lt;strong&gt;本地和远程库是独立构建的&lt;/strong&gt;，那么添加如下参数即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git pull origin master --allow-unrelated-histories
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;gitignore&#34;&gt;.gitignore&lt;/h2&gt;
+
+&lt;p&gt;在 .gitignore 文件中声明的文件名，将不会被 Git 追踪（也就不会对它们进行版本控制、推送到远程库等），除非在更新 .gitignore 之前它们已经被追踪。&lt;/p&gt;
+
+&lt;h3 id=&#34;gitignore-只对未追踪的文件生效&#34;&gt;.gitignore 只对未追踪的文件生效&lt;/h3&gt;
+
+&lt;h4 id=&#34;解决方法&#34;&gt;解决方法&lt;/h4&gt;
+
+&lt;p&gt;注意：该方法会将暂存区里面的文件也&lt;strong&gt;同时删除&lt;/strong&gt;！&lt;/p&gt;
+
+&lt;p&gt;在目标分支下，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git rm -r --cached &amp;lt;想重新忽略的文件名&amp;gt;
+git add .
+git commit -m &amp;quot;update gitignore&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;设置-git-用户名和邮箱&#34;&gt;设置 Git 用户名和邮箱&lt;/h2&gt;
+
+&lt;h3 id=&#34;全局范围配置方法&#34;&gt;全局范围配置方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git config --global user.name &amp;quot;github’s Name&amp;quot;
+git config --global user.email &amp;quot;github@xx.com&amp;quot;
+git config --list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;只作用于当前项目的配置方法&#34;&gt;只作用于当前项目的配置方法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git config user.name “gitlab’s Name”
+git config user.email &amp;quot;gitlab@xx.com&amp;quot;
+git config --list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;也可以直接修改项目文件夹的 &lt;code&gt;.git/config&lt;/code&gt; 文件，这个文件还可以配置 Git 的很多东西，包括关联的远程库地址、用户等。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;ssh-key&#34;&gt;SSH Key&lt;/h2&gt;
+
+&lt;p&gt;SSH Key 是一个身份标识，用于让远程库（比如 GitHub）识别出你这台计算机的身份，从而不需要密码就可以安全提交。&lt;/p&gt;
+
+&lt;h3 id=&#34;第一步-生成-public-key-和-private-key&#34;&gt;第一步：生成 public key 和 private key&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/.ssh
+ls
+# 此时会显示一些文件
+mkdir key_backup
+cp id_rsa* key_backup
+rm id_rsa*  
+# 以上三步为备份和移除原来的SSH key设置
+ssh-keygen -t rsa -C &amp;quot;邮件地址@youremail.com&amp;quot; #生成新的key文件,邮箱地址填你的Github地址
+# Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&amp;lt;回车就好&amp;gt; #如果是二次创建，需要输入新的文件名
+# 接下来会让你输入密码
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;第二步-查看-ssh-公钥&#34;&gt;第二步：查看 SSH 公钥&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd ~/.ssh
+ls # 会列出文件，里面包含公钥文件
+vim id_rsa.pub # 用 vim 编辑器打开公钥文件
+# 复制文件内容到 github 即可
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;第三步-测试-ssh&#34;&gt;第三步：测试 SSH&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh -T git@github.com
+# 之后会要你输入yes/no,输入yes就好
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;一台电脑多个-git-账号-配置多个-ssh-key-的方法&#34;&gt;一台电脑多个 Git 账号，配置多个 SSH Key 的方法&lt;/h3&gt;
+
+&lt;h4 id=&#34;第一步-创建-ssh-key&#34;&gt;第一步：创建 SSH KEY&lt;/h4&gt;
+
+&lt;p&gt;同上&lt;/p&gt;
+
+&lt;h4 id=&#34;第二步-配置-config-文件&#34;&gt;第二步：配置 config 文件&lt;/h4&gt;
+
+&lt;p&gt;查看用户~/.ssh下是否存在 config文件，如不存在使用命令 touch config创建，然后配置config&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 配置github.com
+Host github.com
+    HostName github.com
+    IdentityFile C:\\Users\\popfisher\\.ssh\\id_rsa_github
+    PreferredAuthentications publickey
+    User username1
+
+# 配置git.oschina.net
+Host git.oschina.net
+    HostName git.oschina.net
+    IdentityFile C:\\Users\\popfisher\\.ssh\\id_rsa_oschina
+    PreferredAuthentications publickey
+    User username2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;第三步-测试&#34;&gt;第三步：测试&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ssh -T git@git.oschina.net
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果配置正确会提示 &lt;code&gt;Hi your git account two in github ! You&#39;ve successfully authenticated, but GitHub does not provide shell access.&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;使用方法-clone-项目到本地&#34;&gt;使用方法：clone 项目到本地&lt;/h4&gt;
+
+&lt;p&gt;原先操作是:  &lt;code&gt;git clone git@github.com:yourAccount/xxx.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;现改为：&lt;code&gt;git clone git@git.oschina.net:yourAccount/xxx.git&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Sketch of Git Theory</title>
+      <link>/post/a-sketch-of-git-theory/</link>
+      <pubDate>Sun, 25 Mar 2018 23:42:29 +0800</pubDate>
+      
+      <guid>/post/a-sketch-of-git-theory/</guid>
+      <description>
+
+&lt;p&gt;本文是一篇入门文章，简单介绍了 Git、 GitHub 以及 GitHub Pages。&lt;/p&gt;
+
+&lt;h2 id=&#34;git&#34;&gt;Git&lt;/h2&gt;
+
+&lt;p&gt;Git 是一个版本控制工具。&lt;/p&gt;
+
+&lt;p&gt;版本控制是什么意思？&lt;/p&gt;
+
+&lt;h3 id=&#34;版本控制&#34;&gt;版本控制&lt;/h3&gt;
+
+&lt;p&gt;比如，你想对电脑上某个文件夹进行版本控制，你首先会告诉 Git :&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;“这个文件夹的一举一动，帮我盯紧了！”&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;具体实现：安装 Git（&lt;a href=&#34;https://git-scm.com/&#34; target=&#34;_blank&#34;&gt;Git 官网&lt;/a&gt;），在项目文件夹中，&lt;code&gt;右键 -&amp;gt; Git Bash Here&lt;/code&gt;，打开 Git 命令窗口，执行 &lt;code&gt;git init&lt;/code&gt; 命令。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Git 就会把这个文件夹看成一个 Git 仓库（repository）来照看它，仓库里多了什么、少了什么，都逃不过 Git 的火眼金睛。&lt;/p&gt;
+
+&lt;p&gt;接着，你在这个仓库中删除了一些文件，又新建了一些文件，还修改了一些文件，告诉 Git：&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;“这是这个库的一个新的版本了，记住它。”&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;具体实现：先暂存，后提交&lt;/p&gt;
+
+&lt;p&gt;暂存版本：&lt;code&gt;git add .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;提交新版本：&lt;code&gt;git commit -m &amp;quot;&amp;lt;提交信息&amp;gt;&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Git 就会在小本子上记下：&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;“某年某月某日，主人提交了这个仓库（repository）的一个新版本，&lt;strong&gt;现在&lt;/strong&gt;仓库里有这些文件，文件的内容分别是 &lt;code&gt;XXX...&lt;/code&gt;”&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;很多天过去了，你又作了很多改动，提交了很多个版本。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;你显然难以完整记得自己改了哪些地方。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;因为一些原因，你想要把这个文件夹&lt;strong&gt;恢复到某个历史版本&lt;/strong&gt;，Git 能帮你做到：&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;&amp;ldquo;Git 哟，请把这个文件夹(或者说仓库, repository)恢复到某年某月某日我提交的那个版本啊~&amp;rdquo;&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;根据不同需求，版本回退有多种命令行实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Git 就会开始翻看它的小本子，看到自己之前写的记录，想道：&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;ul&gt;
+&lt;li&gt;那个历史版本有这些文件，文件内容是&lt;code&gt;XXX...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;现在的仓库内容是&lt;code&gt;XYY...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;现在的版本多出了 &lt;code&gt;YY...&lt;/code&gt;，少了 &lt;code&gt;XX...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;根据比较结果，可以进行版本回退&lt;/li&gt;
+&lt;li&gt;于是，我把现在的这个仓库(repository，或者说文件夹)改变了回那天提交的版本.&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;这样，你就会看到这个文件夹里的文件和它们的内容都变回历史版本了。&lt;/p&gt;
+
+&lt;h3 id=&#34;git-分支&#34;&gt;Git 分支&lt;/h3&gt;
+
+&lt;p&gt;你可以让 Git 对同一个仓库（repository）建立很多“小本子”，它们相互独立。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;每本小本子就是项目的一个 Git 分支&lt;/p&gt;
+
+&lt;p&gt;具体实现：执行 &lt;code&gt;git checkout -b &amp;lt;新分支的名字&amp;gt;&lt;/code&gt;，可以基于当前分支新建一个分支&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;你和你的合作者们&lt;strong&gt;分工&lt;/strong&gt;，一项大任务专门用一本小本子控制版本，各自独立工作。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;切换分支： &lt;code&gt;git checkout &amp;lt;分支名&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;大家都完成任务后，把本子&lt;strong&gt;合并&lt;/strong&gt;起来，就把整个项目安全地往前推进了一大步。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;合并分支： &lt;code&gt;git merge&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这种相互独立的“小本子工作法”就是使用 Git 分支的工作流程，也是 Git 工作的精髓之一。&lt;/p&gt;
+
+&lt;h3 id=&#34;git-本地仓库-远程仓库&#34;&gt;Git 本地仓库-远程仓库&lt;/h3&gt;
+
+&lt;p&gt;仓库可以建立在本地（&lt;strong&gt;本地仓库&lt;/strong&gt;），也可以建立在服务器上（&lt;strong&gt;远程仓库&lt;/strong&gt;）。&lt;/p&gt;
+
+&lt;p&gt;你可以把一些本子放到网络服务器上，更新服务器上的仓库。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;具体实现：执行 &lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;也可以把网上的“小本子”克隆到本地，从而能同步本地的仓库。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;具体实现：根据情境，使用 &lt;code&gt;git pull&lt;/code&gt; 或 &lt;code&gt;git clone&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;远程分支(remote branch)&lt;/strong&gt;：这些放在网络服务器上的小本子&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;远程仓库(remote repository)&lt;/strong&gt;：储存在网上、使用这些远程分支进行“版本控制”的文件夹(repository)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;about-github&#34;&gt;About GitHub&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;www.github.com&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; 是由一批优秀程序员搭建起来的 Git 远程仓库的免费托管平台。&lt;/p&gt;
+
+&lt;p&gt;只需要在 GitHub 网站进行简单账户设置，用 Git 命令让它和本地的 Git 客户端关联起来，就可以实现&lt;strong&gt;在线版本管理&lt;/strong&gt;、同步甚至&lt;strong&gt;多人协作&lt;/strong&gt;的功能，而不用自己搭建服务器、建立远程仓库了，岂不美哉？&lt;/p&gt;
+
+&lt;h2 id=&#34;about-github-pages&#34;&gt;About GitHub Pages&lt;/h2&gt;
+
+&lt;p&gt;GitHub Pages 是 GitHub 的一个功能，可以帮助你搭建自己的展示网站，原理是:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;读取你发布到 GitHub 上的特定远程仓库&lt;/li&gt;
+&lt;li&gt;把里面的文件渲染成对应的网页&lt;/li&gt;
+&lt;li&gt;用 GitHub 自己的服务器帮你把网页搭建在以你的用户名作为一部分命名的网址上( 例如 &lt;code&gt;username.github.io/&lt;/code&gt; )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;现在你对整个原理应该有大致理解了~&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
