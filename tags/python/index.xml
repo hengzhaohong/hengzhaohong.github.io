@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ABC on Hengzhao Hong&#39;s Space</title>
-    <link>/tags/abc/</link>
-    <description>Recent content in ABC on Hengzhao Hong&#39;s Space</description>
+    <title>Python on Hengzhao Hong&#39;s Space</title>
+    <link>/tags/python/</link>
+    <description>Recent content in Python on Hengzhao Hong&#39;s Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;Hengzhao Hong 2019</copyright>
     <lastBuildDate>Mon, 10 Jun 2019 15:03:04 +0800</lastBuildDate>
     
-	<atom:link href="/tags/abc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>/post/a-very-very-simple-scrapy-using-python/</guid>
       <description>近日某深夜，一位在远方实习的舍友来请求我的帮助&amp;hellip;他需要从一个网站上搜集近两年总共5万多条的基金季报数据（该数据属于公开数据），</description>
-    </item>
-    
-    <item>
-      <title>A Sketch of Git Theory</title>
-      <link>/post/a-sketch-of-git-theory/</link>
-      <pubDate>Sun, 25 Mar 2018 23:42:29 +0800</pubDate>
-      
-      <guid>/post/a-sketch-of-git-theory/</guid>
-      <description>本文是一篇入门文章，简单介绍了 Git、 GitHub 以及 GitHub Pages。 Git Git 是一个版本控制工具。 版本控制是什么意思？ 版本控制 比如，你想对电脑上某个文件夹进</description>
     </item>
     
   </channel>

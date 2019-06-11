@@ -7,8 +7,530 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;Hengzhao Hong 2019</copyright>
-    <lastBuildDate>Wed, 20 Mar 2019 21:34:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jun 2019 15:03:04 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A Very Very Simple Scrapy Using Python</title>
+      <link>/post/a-very-very-simple-scrapy-using-python/</link>
+      <pubDate>Mon, 10 Jun 2019 15:03:04 +0800</pubDate>
+      
+      <guid>/post/a-very-very-simple-scrapy-using-python/</guid>
+      <description>
+
+&lt;p&gt;近日某深夜，一位在远方实习的舍友来请求我的帮助&amp;hellip;他需要从&lt;a href=&#34;https://whalewisdom.com/dashboard2/search/stock_screener&#34; target=&#34;_blank&#34;&gt;一个网站&lt;/a&gt;上搜集近两年总共5万多条的基金季报数据（该数据属于公开数据），并把数据写入 Excel 文件保存。这是一个非常非常简单、基础的爬虫项目，很适合入门。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;什么是 Python 爬虫：&lt;/p&gt;
+
+&lt;p&gt;简单地说，爬虫就是用程序代替人工来访问大量结构相似的网页，解析这些网页的内容，提取出自己想要的数据，最后并把收集到的数据储存到本地，用于进一步的研究分析。以上这些工作全部由编写好的 Python 程序自动化地完成。&lt;/p&gt;
+
+&lt;p&gt;爬虫可以节省大量人力时间，完成人力所不能及的大规模网络数据采集任务。比如：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;访问一个信息公示网页内的几百页、上万个链接，从每个子链接点进去的表格中提取信息，形成一张汇总表格。&lt;/li&gt;
+&lt;li&gt;下载关于某个主题的几百万张图片到本地的一个指定文件夹内。&lt;/li&gt;
+&lt;li&gt;搜索、下载满足某个条件的一系列视频到本地。&lt;/li&gt;
+&lt;li&gt;收集相同商品在不同市场上的价格，并实时更新。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;BTW, 舍友先拿着网站去问了淘宝代写爬虫的店家，这么简单的一个爬虫，店家居然要价 200&amp;hellip;我&lt;del&gt;也有点心动&lt;/del&gt;实在有点看不过去，钱有这么好赚吗&amp;hellip;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;爬虫需谨慎，本文的代码和数据都仅用于编程技术学习，请勿用于其他任何用途，否则造成的后果与本文作者无关。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;前提条件&#34;&gt;前提条件&lt;/h2&gt;
+
+&lt;p&gt;在真正编写一个爬虫之前，我们需要 Python 环境。这里强烈推荐直接安装 Anaconda (Python 3+)，它集成了 Python 环境、用于数据科学的 Python 库和一系列非常实用的工具。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装-anaconda&#34;&gt;安装 Anaconda&lt;/h3&gt;
+
+&lt;p&gt;从 &lt;a href=&#34;https://www.anaconda.com/distribution/&#34; target=&#34;_blank&#34;&gt;Anaconda 下载页面&lt;/a&gt;安装 Anaconda。安装时有一步会询问是否将 python 加入环境变量（PATH），在那里请勾选“是”，继续安装。&lt;/p&gt;
+
+&lt;p&gt;安装完成后，命令行输入 &lt;code&gt;python&lt;/code&gt; 并回车，会出现类似下面的提示，说明环境搭建成功。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Python 3.7.1 (default, Dec 10 2018, 22:54:23) [MSC v.1915 64 bit (AMD64)] :: 
+Anaconda, Inc. on win32
+Type &amp;quot;help&amp;quot;, &amp;quot;copyright&amp;quot;, &amp;quot;credits&amp;quot; or &amp;quot;license&amp;quot; for more information.
+&amp;gt;&amp;gt;&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果此处报错，说明没有把 &lt;code&gt;python&lt;/code&gt; 添加到系统环境变量里，查找 &amp;ldquo;Anaconda 添加环境变量&amp;rdquo; 的相关教程即可，这里不再赘述。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;你还需要一个可以解析网络请求的浏览器-比如谷歌浏览器&#34;&gt;你还需要一个可以解析网络请求的浏览器（比如谷歌浏览器）&lt;/h3&gt;
+
+&lt;p&gt;爬虫的本质是&lt;del&gt;替你上网冲浪&lt;/del&gt;模仿浏览器的行为访问网站，区别在于，得到服务器响应之后，爬虫和人工访问用的浏览器做的事不一样：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;人工访问网站时，浏览器做的事&lt;/strong&gt;：浏览器会向网站的服务器发送请求，得到服务器返回的文件，然后在浏览器中解析这些文件，形成内容、版式，最后构成一个网页展示给我们看。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;程序访问网站时，程序所做的事&lt;/strong&gt;：程序模仿浏览器，向网站的服务器发送和浏览器一模一样的请求，得到一模一样的返回文件，然后在程序中直接解析这些文件，直接提取我们想要的内容、数据，把它们储存到本地。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;显然，在一开始，我们的爬虫并不是一个成熟的爬虫，它需要我们代码的指引。为此，我们首先要知道浏览器请求这个网站时是怎么做的，才能让 Python 爬虫模仿它。&lt;/p&gt;
+
+&lt;p&gt;在谷歌浏览器中，&lt;code&gt;点击右键-检查&lt;/code&gt;（或者按 &lt;code&gt;F12&lt;/code&gt;）进入浏览器控制台，在控制台中选择 Network 签页，按红点旁边的禁止图案清空已有记录，再访问我们要爬的网页，就可以读取到浏览器的发送的请求，以及服务器返回的具体文件了。其他浏览器有类似功能即可。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;console.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;谷歌浏览器的控制台&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;分析网站-我们要爬什么&#34;&gt;分析网站：我们要爬什么？&lt;/h2&gt;
+
+&lt;p&gt;先分析网站很重要，可以帮我们发现最合适、高效的方法。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;web1.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;网站页面概览&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://whalewisdom.com/dashboard2/search/stock_screener&#34; target=&#34;_blank&#34;&gt;从这里&lt;/a&gt;打开我们要爬取的网站，我们可以看到，页面的表格就是我们想要获取的基金季报数据，默认只显示 2019 年第一季度的数据。我们通过筛选按钮，筛选出从 2018 年第一季度至 2019 年第一季度的所有基金季报数据（共 58169 条）。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;web2.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;筛选我们需要的时间区间&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;现在，网站页面显示，我们要爬取的表格有 2300 多页，每一页有 20 多行。&lt;/p&gt;
+
+&lt;p&gt;要想把这些数据全部收集到 Excel 表格中，用人工显然是不可能的&amp;hellip;&amp;hellip;爬虫的优势这时就体现出来啦！&lt;/p&gt;
+
+&lt;h3 id=&#34;通过浏览器捕获请求&#34;&gt;通过浏览器捕获请求&lt;/h3&gt;
+
+&lt;p&gt;在设计任何爬虫时，&lt;strong&gt;我们首先都想尝试知道浏览器如何请求到新数据的&lt;/strong&gt;，如果知道这一点，爬虫只需要构造一模一样的请求，就可以拿到数据，这是最&lt;del&gt;令人开心的&lt;/del&gt;简单的爬虫情形。&lt;/p&gt;
+
+&lt;p&gt;如何捕获到这个关键的请求呢？一个简单的方法：现代的网站开发中，为了提高用户体验，在需要更新某些内容时，网页往往只会更新 &lt;em&gt;需要更新的那部分&lt;/em&gt; ，其他部分不会更新。因此，我们让这个网站面临一个只需要更新数据的情形 &amp;mdash;&amp;mdash; &lt;strong&gt;翻页&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;在谷歌浏览器中，&lt;code&gt;点击右键-检查&lt;/code&gt;（或者按 &lt;code&gt;F12&lt;/code&gt;）进入浏览器控制台，在控制台中选择 Network 签页，按红点旁边的禁止图案清空已有记录，然后&lt;strong&gt;翻页&lt;/strong&gt;。我们&lt;del&gt;十分欣慰地&lt;/del&gt;发现，在翻页的过程中，浏览器只向服务器发送了唯一一条请求，因此我们基本可以确定，新一页的数据就在这条新请求的返回结果中。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;page.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;捕获翻页时发生的请求&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;点击该请求，&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Headers 签页描述了浏览器向哪个地址请求数据、传递的参数是什么，以及服务器如何响应该请求。&lt;/li&gt;
+&lt;li&gt;Preview 签页展示了服务器返回的内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们选择 Preview 页签，看到的是一个结构化的数据，展开其中 rows 字段，可以看到里面就是我们在这一页想要的数据。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;page2.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;服务器返回的内容&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;找到关键请求之后，我们选择 Headers 页签，找到请求的 URL 和请求的方式（&lt;code&gt;GET&lt;/code&gt;）。&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;page3.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;找到请求的 URL 和方式&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;在 Headers 页签的最下方找到请求的参数。这个参数是被传递给服务器，服务器可以根据参数返回正确的数据。对照参数和当前网页的内容，可以看出：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rows&lt;/code&gt; 是每一页的行数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;page&lt;/code&gt; 是当前页码（连续翻页观察请求的网址，也可以看出）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sord&lt;/code&gt; 是排序顺序（升序/降序）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sidx&lt;/code&gt; 是排序依据的字段名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;quarter_id[]&lt;/code&gt; 则是之前选择的各个时间范围。&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;page4.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;请求的参数&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;服务器根据这些参数查询数据，然后把数据返回给浏览器（这里被我们捕获），浏览器把数据填充进网页中，更新新一页的表格，完成翻页。整个请求的逻辑十分清晰&lt;del&gt;，爬虫写起来也就十分容易&lt;/del&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;编写爬虫&#34;&gt;编写爬虫&lt;/h2&gt;
+
+&lt;p&gt;新建文件 &lt;code&gt;web_scrapy.py&lt;/code&gt;，用编辑器打开。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;没有安装编辑器的话，强烈推荐安装 &lt;a href=&#34;https://code.visualstudio.com/&#34; target=&#34;_blank&#34;&gt;VS Code&lt;/a&gt;，一个免费、开源又功能强大的编辑器，你不会后悔的。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;首先引入我们需要用到的三个库，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# web_scrapy.py
+import time # 时间库，这里用于限制爬取的速度，否则程序的请求过快，可能影响到对方服务器的正常运行
+import requests # 访问互联网的库，这里用于模拟浏览器发送请求，并接受返回数据
+import pandas as pd # 数据处理库，这里用于将数据写入 Excel
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设定爬虫的配置，后面会引用到这些变量。配置写在最前面，方便整个爬虫的维护。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;speed_rate = 2 # 爬虫速度。这里把速度限制在人工访问的水平（每 2 秒请求一次），尽量避免影响服务器的正常运行
+row_per_page = 100 # 每页请求 100 行，经过尝试，这是一次请求能得到的最大行数，默认是每页 25 行，我们这样设置能极大提升爬虫效率，也使爬取速度能被限制成更慢的速度，避免影响对方服务器的正常运行
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;尝试请求第一个页面，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# web_scrapy.py
+res = requests.get(&#39;https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;amp;page=1&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69&#39; % (row_per_page))
+records = res.json()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;requests.get()&lt;/code&gt; 函数里传入的是请求的目标 URL，我们从刚才捕获的请求中得到了单个页面的 URL，该函数使用 GET 方式向指定的 URL 发送网络请求&lt;/li&gt;
+&lt;li&gt;URL 中，参数 &lt;code&gt;page=1&lt;/code&gt;，我们请求的是第一页的数据&lt;/li&gt;
+&lt;li&gt;URL 中，参数 &lt;code&gt;rows=%s&lt;/code&gt;，使用了格式化字符串，将百分号后面的 &lt;code&gt;row_per_page&lt;/code&gt; 变量输出到 &lt;code&gt;%s&lt;/code&gt; 位置，从而配置了每页请求的行数。若看不懂该行语法，请复习 &lt;a href=&#34;https://www.liaoxuefeng.com/wiki/1016959663602400/1017075323632896&#34; target=&#34;_blank&#34;&gt;Python 格式化字符串&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;requests.get()&lt;/code&gt; 返回的结果是一个 Response 对象，调用它的 &lt;code&gt;json()&lt;/code&gt; 方法，我们得到 json 格式的返回数据，从浏览器控制台中该请求的 Preview 页签看得更美观一些。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;检查请求是否成功：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 打印请求状态码，200说明请求成功，404说明找不到页面，等等
+print(res.status_code)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;200
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;print(records)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{&#39;total&#39;: 582, &#39;facets&#39;: {&#39;market_cap&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 5916, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 6792, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 3370, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 10731, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 4249, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 837, &#39;is_true&#39;: True}, {&#39;value&#39;: 7, &#39;count&#39;: 711, &#39;is_true&#39;: True}], &#39;market_cap_13f&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 36037, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 7683, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 3152, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 8663, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 2167, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 289, &#39;is_true&#39;: True}, {&#39;value&#39;: 7, &#39;count&#39;: 178, &#39;is_true&#39;: True}], &#39;turnover_13f&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 11378, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 768, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 13493, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 22213, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 6041, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 1202, &#39;is_true&#39;: True}], &#39;ranking&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 280, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 387, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 717, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 2142, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 23239, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 31376, &#39;is_true&#39;: True}], &#39;pe&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 58169, &#39;is_true&#39;: True}], &#39;pe_next_year&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 58160, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 5, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 4, &#39;is_true&#39;: True}], &#39;price_sales&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 58169, &#39;is_true&#39;: True}], &#39;price_book&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 58169, &#39;is_true&#39;: True}], &#39;dividend_yield&#39;: [], &#39;held_by&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 23428, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 6744, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 5776, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 6298, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 15223, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 700, &#39;is_true&#39;: True}], &#39;filer_ids&#39;: [], &#39;percent_change_in_shares_qoq&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 4694, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 14889, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 4335, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 2435, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 1501, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 2229, &#39;is_true&#39;: True}, {&#39;value&#39;: 7, &#39;count&#39;: 16354, &#39;is_true&#39;: True}, {&#39;value&#39;: 8, &#39;count&#39;: 4097, &#39;is_true&#39;: True}, {&#39;value&#39;: 9, &#39;count&#39;: 2374, &#39;is_true&#39;: True}, {&#39;value&#39;: 10, &#39;count&#39;: 2182, &#39;is_true&#39;: True}], &#39;percent_change_in_filers_qoq&#39;: [{&#39;value&#39;: 1, &#39;count&#39;: 14783, &#39;is_true&#39;: True}, {&#39;value&#39;: 2, &#39;count&#39;: 10969, &#39;is_true&#39;: True}, {&#39;value&#39;: 3, &#39;count&#39;: 5392, &#39;is_true&#39;: True}, {&#39;value&#39;: 4, &#39;count&#39;: 2806, &#39;is_true&#39;: True}, {&#39;value&#39;: 5, &#39;count&#39;: 1765, &#39;is_true&#39;: True}, {&#39;value&#39;: 6, &#39;count&#39;: 545, &#39;is_true&#39;: True}, {&#39;value&#39;: 7, &#39;count&#39;: 11159, &#39;is_true&#39;: True}, {&#39;value&#39;: 8, &#39;count&#39;: 4832, &#39;is_true&#39;: True}, {&#39;value&#39;: 9, &#39;count&#39;: 2305, &#39;is_true&#39;: True}, {&#39;value&#39;: 10, &#39;count&#39;: 539, &#39;is_true&#39;: True}], &#39;quarter_id&#39;: [{&#39;value&#39;: 71, &#39;count&#39;: 11767, &#39;is_true&#39;: True}, {&#39;value&#39;: 72, &#39;count&#39;: 11701, &#39;is_true&#39;: True}, {&#39;value&#39;: 73, &#39;count&#39;: 11611, &#39;is_true&#39;: True}, {&#39;value&#39;: 69, &#39;count&#39;: 11588, &#39;is_true&#39;: True}, {&#39;value&#39;: 70, &#39;count&#39;: 11502, &#39;is_true&#39;: True}], &#39;sector&#39;: [{&#39;value&#39;: &#39;FINANCE&#39;, &#39;count&#39;: 18660, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;UNKNOWN&#39;, &#39;count&#39;: 7284, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;HEALTH CARE&#39;, &#39;count&#39;: 4859, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;INFORMATION TECHNOLOGY&#39;, &#39;count&#39;: 3745, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;INDUSTRIALS&#39;, &#39;count&#39;: 3502, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;CONSUMER DISCRETIONARY&#39;, &#39;count&#39;: 3447, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;MUTUAL FUND&#39;, &#39;count&#39;: 3406, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;MATERIALS&#39;, &#39;count&#39;: 2867, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;ENERGY&#39;, &#39;count&#39;: 2630, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;REAL ESTATE&#39;, &#39;count&#39;: 2372, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;CONSUMER STAPLES&#39;, &#39;count&#39;: 1622, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;UTILITIES AND TELECOMMUNICATIONS&#39;, &#39;count&#39;: 1556, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;COMMUNICATIONS&#39;, &#39;count&#39;: 1306, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;TRANSPORTS&#39;, &#39;count&#39;: 733, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;UTILITIES&#39;, &#39;count&#39;: 76, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;Communications&#39;, &#39;count&#39;: 60, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;Utilities&#39;, &#39;count&#39;: 22, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;&#39;, &#39;count&#39;: 10, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;Consumer Staples&#39;, &#39;count&#39;: 5, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;Transports&#39;, &#39;count&#39;: 4, &#39;is_true&#39;: True}, {&#39;value&#39;: &#39;Health Care&#39;, &#39;count&#39;: 3, &#39;is_true&#39;: True}], &#39;industry&#39;: []}, &#39;records&#39;: 58169, &#39;page&#39;: 1, &#39;sort&#39;: &#39;score&#39;, &#39;dir&#39;: &#39;desc&#39;, &#39;rows&#39;: [{&#39;id&#39;: &#39;1470482&#39;, &#39;score&#39;: None, &#39;permalink&#39;: &#39;aeis&#39;, &#39;symbol&#39;: &#39;AEIS&#39;, &#39;name&#39;: &#39;ADVANCED ENERGY INDUSTRIES INC&#39;, &#39;held_by&#39;: 292, &#39;market_cap&#39;: 2306173000.0, &#39;market_cap_13f&#39;: 2132144670.0, &#39;dividend_yield&#39;: None, &#39;pe&#39;: None, &#39;turnover&#39;: 28.343948, &#39;percent_change_in_mv_qoq&#39;: -8.273920042454789, &#39;percent_change_in_shares_qoq&#39;: 0.8444298, &#39;percent_change_in_filers_qoq&#39;: -7.0063696, &#39;pe_next_year&#39;: None, &#39;average_ranking&#39;: 902, &#39;quarter&#39;: &#39;Q2 2018&#39;, &#39;sector&#39;: &#39;INFORMATION TECHNOLOGY&#39;, &#39;industry&#39;: &#39;SEMICONDUCTORS&#39;}, ...]}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;返回的 json 里（从浏览器请求的 Preview 页签中看），&lt;code&gt;records&lt;/code&gt; 字段是总数据量，&lt;code&gt;rows&lt;/code&gt; 是每页请求的数据量，&lt;code&gt;total&lt;/code&gt; 字段是根据 &lt;code&gt;rows&lt;/code&gt; 的总页数，利用这些信息，我们可以估计爬取时间，从而合理地调整速度和每页请求量。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;由于学习的目的，爬取速度在允许的情况下尽量限制得慢一点，避免影响对方服务器正常运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;print(&#39;总数据量：%s&#39; % records[&#39;records&#39;])
+print(&#39;每页数据量：%s&#39; % len(records[&#39;rows&#39;]))
+min_request_time = records[&#39;records&#39;]//len(records[&#39;rows&#39;]) + 1
+print(&#39;最少请求次数：%s 次&#39; % (min_request_time))
+print(&#39;爬取速度设定为：每 %.2f 秒请求一次&#39; % speed_rate)
+expected_time_spend = min_request_time*speed_rate
+print(&#39;预计耗时：%.2f 秒 = %.2f 分钟 = %.2f 小时&#39; % (expected_time_spend, expected_time_spend/60, expected_time_spend/3600))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;若以上语法看不懂，请复习 &lt;a href=&#34;https://www.liaoxuefeng.com/wiki/1016959663602400/1017075323632896&#34; target=&#34;_blank&#34;&gt;Python 格式化字符串&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;输出结果：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;总数据量：58169
+每页数据量：100
+最少请求次数：582 次
+爬取速度设定为：每 2.00 秒请求一次
+预计耗时：1164.00 秒 = 19.40 分钟 = 0.32 小时
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之前，连续翻页时分析请求，我们发现 URL 中只有 page 参数发生了变化。因此，要想爬取全部数据，我们只需写一个循环，每次循环改变 page 参数值，就可以爬下全部页面的数据了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 定义一个空数组，用于存放爬下来的全部数据
+result_data = []
+
+# 循环爬取每一个页面，数据写入刚才的空数组中
+for i in range(min_request_time):
+    # 使用格式化字符串的语法，先生成 URL
+    url = &#39;https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;amp;page=%s&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69&#39; % (row_per_page, i+1)
+
+    # 发起请求，打印请求的状态和 URL。这样爬虫运行的时候可以把握进度。
+    res = requests.get(url)
+    print(&#39;%s %s&#39; % (res.status_code, res.url))
+    records = res.json()
+
+    # 数据就在每个 json 返回结果的 rows 字段中，前面已分析。
+    data = records[&#39;rows&#39;]
+
+    # 重命名变量，并把结果追加写入数组中
+    for row in data:
+        result_data.append({
+            &#39;Quarter&#39;: row[&#39;quarter&#39;],
+            &#39;Name&#39;: row[&#39;name&#39;],
+            &#39;Ticker&#39;: row[&#39;symbol&#39;],
+            &#39;Sector&#39;: row[&#39;sector&#39;],
+            &#39;Industry&#39;: row[&#39;industry&#39;],
+            &#39;# Held_By&#39;: row[&#39;held_by&#39;],
+            &#39;Overall_Market_Cap&#39;: row[&#39;market_cap&#39;],
+            &#39;13F Market Cap &#39;: row[&#39;market_cap_13f&#39;],
+            &#39;QoQ % Change in 13F Market Cap&#39;: row[&#39;percent_change_in_mv_qoq&#39;],
+            &#39;13F Turnover &#39;: row[&#39;turnover&#39;],
+            &#39;Avg 13F Ranking &#39;: row[&#39;average_ranking&#39;],
+            &#39;% Change in Filers&#39;: row[&#39;percent_change_in_filers_qoq&#39;],
+            &#39;% Change in Shares&#39;: row[&#39;percent_change_in_shares_qoq&#39;]
+        })
+    
+    # 十分重要，让程序在指定时间后才继续进入下一次循环，这里是 2 秒，speed_rate = 2
+    # 限制了爬虫请求速度最快为 2 秒一次
+    time.sleep(speed_rate)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;爬虫项目的网络数据采集部分到此完成，循环结束后，&lt;code&gt;result_data&lt;/code&gt; 变量即为爬取得到的数据。接下来我们将数据写入 Excel 表格中。&lt;/p&gt;
+
+&lt;h2 id=&#34;储存数据&#34;&gt;储存数据&lt;/h2&gt;
+
+&lt;p&gt;写入 Excel 也很简单，使用开头引入的 &lt;code&gt;pandas&lt;/code&gt; 库即可。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 定义变量在表格中展示的顺序
+result_order = [
+        &#39;Quarter&#39;,
+        &#39;Name&#39;,
+        &#39;Ticker&#39;,
+        &#39;Sector&#39;,
+        &#39;Industry&#39;,
+        &#39;# Held_By&#39;,
+        &#39;Overall_Market_Cap&#39;,
+        &#39;13F Market Cap &#39;,
+        &#39;QoQ % Change in 13F Market Cap&#39;,
+        &#39;13F Turnover &#39;,
+        &#39;Avg 13F Ranking &#39;,
+        &#39;% Change in Filers&#39;,
+        &#39;% Change in Shares&#39;
+    ]
+
+# 使用 result_data 数组生成数据表格 DataFrame 对象，这里 pd 来自最开始引入的 pandas 库
+result_df = pd.DataFrame.from_records(data = result_data)
+
+# 调整变量在表格中展示的顺序
+result_df = result_df[result_order]
+
+# 将 DataFrame 对象写入 Excel 文件中，文件名为 data.xlsx，Sheet 名为 data
+result_df.to_excel(&amp;quot;data.xlsx&amp;quot;, sheet_name=&#39;data&#39;, index = False)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;若在 Jupyter Notebook 中运行，直接执行 &lt;code&gt;result_df&lt;/code&gt; 也可以看到最终的数据表。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;完整代码&#34;&gt;完整代码&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;# web_scrapy.py
+
+import time # 时间库，这里用于限制爬取的速度，否则程序的请求过快，可能影响到对方服务器的正常运行
+import requests # 访问互联网的库，这里用于模拟浏览器发送请求，并接受返回数据
+import pandas as pd # 数据处理库，这里用于将数据写入 Excel
+
+# 配置
+speed_rate = 2
+row_per_page = 100
+
+# 预先请求一次，估计爬虫时间等信息
+res = requests.get(&#39;https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;amp;page=1&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69&#39; % (row_per_page))
+records = res.json()
+# print(res.status_code)
+# print(records)
+
+print(&#39;总数据量：%s&#39; % records[&#39;records&#39;])
+print(&#39;每页数据量：%s&#39; % len(records[&#39;rows&#39;]))
+min_request_time = records[&#39;records&#39;]//len(records[&#39;rows&#39;]) + 1
+print(&#39;最少请求次数：%s 次&#39; % (min_request_time))
+print(&#39;爬取速度设定为：每 %.2f 秒请求一次&#39; % speed_rate)
+expected_time_spend = min_request_time*speed_rate
+print(&#39;预计耗时：%.2f 秒 = %.2f 分钟 = %.2f 小时&#39; % (expected_time_spend, expected_time_spend/60, expected_time_spend/3600))
+
+# 下面爬取全部页面的数据
+
+# 定义一个空数组，用于存放爬下来的全部数据
+result_data = []
+
+# 循环爬取每一个页面，数据写入刚才的空数组中
+for i in range(min_request_time):
+    # 使用格式化字符串的语法，先生成 URL
+    url = &#39;https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;amp;page=%s&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69&#39; % (row_per_page, i+1)
+
+    # 发起请求，打印请求的状态和 URL。这样爬虫运行的时候可以把握进度。
+    res = requests.get(url)
+    print(&#39;%s %s&#39; % (res.status_code, res.url))
+    records = res.json()
+
+    # 数据就在每个 json 返回结果的 rows 字段中，前面已分析。
+    data = records[&#39;rows&#39;]
+
+    # 重命名变量，并把结果追加写入数组中
+    for row in data:
+        result_data.append({
+            &#39;Quarter&#39;: row[&#39;quarter&#39;],
+            &#39;Name&#39;: row[&#39;name&#39;],
+            &#39;Ticker&#39;: row[&#39;symbol&#39;],
+            &#39;Sector&#39;: row[&#39;sector&#39;],
+            &#39;Industry&#39;: row[&#39;industry&#39;],
+            &#39;# Held_By&#39;: row[&#39;held_by&#39;],
+            &#39;Overall_Market_Cap&#39;: row[&#39;market_cap&#39;],
+            &#39;13F Market Cap &#39;: row[&#39;market_cap_13f&#39;],
+            &#39;QoQ % Change in 13F Market Cap&#39;: row[&#39;percent_change_in_mv_qoq&#39;],
+            &#39;13F Turnover &#39;: row[&#39;turnover&#39;],
+            &#39;Avg 13F Ranking &#39;: row[&#39;average_ranking&#39;],
+            &#39;% Change in Filers&#39;: row[&#39;percent_change_in_filers_qoq&#39;],
+            &#39;% Change in Shares&#39;: row[&#39;percent_change_in_shares_qoq&#39;]
+        })
+    
+    # 十分重要，让程序在指定时间后才继续进入下一次循环，这里是 2 秒，speed_rate = 2
+    # 限制了爬虫请求速度最快为 2 秒一次
+    time.sleep(speed_rate)
+
+# 定义变量在表格中展示的顺序
+result_order = [
+        &#39;Quarter&#39;,
+        &#39;Name&#39;,
+        &#39;Ticker&#39;,
+        &#39;Sector&#39;,
+        &#39;Industry&#39;,
+        &#39;# Held_By&#39;,
+        &#39;Overall_Market_Cap&#39;,
+        &#39;13F Market Cap &#39;,
+        &#39;QoQ % Change in 13F Market Cap&#39;,
+        &#39;13F Turnover &#39;,
+        &#39;Avg 13F Ranking &#39;,
+        &#39;% Change in Filers&#39;,
+        &#39;% Change in Shares&#39;
+    ]
+
+# 使用 result_data 数组生成数据表格 DataFrame 对象，这里 pd 来自最开始引入的 pandas 库
+result_df = pd.DataFrame.from_records(data = result_data)
+
+# 调整变量在表格中展示的顺序
+result_df = result_df[result_order]
+
+# 将 DataFrame 对象写入 Excel 文件中，文件名为 data.xlsx，Sheet 名为 data
+result_df.to_excel(&amp;quot;data.xlsx&amp;quot;, sheet_name=&#39;data&#39;, index = False)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;运行爬虫与成果&#34;&gt;运行爬虫与成果&lt;/h2&gt;
+
+&lt;p&gt;运行该 py 文件即可。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;相同目录下打开命令行，执行 &lt;code&gt;python web_scrapy.py&lt;/code&gt; 即可&lt;/li&gt;
+&lt;li&gt;也可以将代码复制进 Jupyter Notebook 运行&lt;/li&gt;
+&lt;li&gt;可以使用 VS Code 运行和调试该文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;输出结果如下示例，每2秒会发起一个新请求，因而每两秒打印一条请求记录，作为爬虫日志。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;总数据量：58169
+每页数据量：100
+最少请求次数：582 次
+爬取速度设定为：每 2.00 秒请求一次
+预计耗时：1164.00 秒 = 19.40 分钟 = 0.32 小时
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=1&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=2&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=3&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=4&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=5&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=6&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=7&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=8&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;amp;page=9&amp;amp;sidx=score&amp;amp;sord=desc&amp;amp;or_filers=0&amp;amp;quarter_id[]=73&amp;amp;quarter_id[]=72&amp;amp;quarter_id[]=71&amp;amp;quarter_id[]=70&amp;amp;quarter_id[]=69
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;得到 Excel 数据文件（示例，可能顺序有所差别）：&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;res.png&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+  &lt;h4&gt;Excel 数据文件&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;这是一个非常简单的爬虫，但一开始没有经过那些请求分析的话，入门可能依然毫无头绪，写的爬虫也会更为复杂。&lt;/p&gt;
+
+&lt;p&gt;在更严谨的爬虫中，我们需要用 &lt;code&gt;try...except...finally...&lt;/code&gt; 语法对请求失败的情况进行处理（重试等等，关于该语法请复习&lt;a href=&#34;https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;），微调代码即可。&lt;/p&gt;
+
+&lt;p&gt;在这个爬虫中，我们通过翻页的动作找到了浏览器请求新数据的关键请求，从而能直接构造这个请求得到数据。在另一些情况中，这个关键请求难以捕获，如果捕获不到数据生产的“过程”，那么我们只能从我们看到的最终网页“结果”出发，用程序（Python 的 BeautifulSoup4 库）来解析最终的 html 网页文件，从众多标签中分离出我们需要的数据储存起来，那种方法显然也能爬取本文所爬取的网站&lt;del&gt;（下一篇入门教程就决定是它了）&lt;/del&gt;，但它不比本文的这类方法高效（还需要额外处理该网站的动态加载问题），得到的数据精度（对比网页数据和请求的数据可以看出这一点）、运行效率也不如直接捕获“过程”的这类程序来得好，那种方法是本文这类方法行不通时的另一个通用策略，也仍是值得进一步学习的重要技术之一。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A Guidance to Beautiful Jekyll Pages</title>

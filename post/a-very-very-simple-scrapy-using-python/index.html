@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.1.0">
+  <meta name="generator" content="Hugo 0.54.0" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Hengzhao Hong">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Python in Practce">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/a-very-very-simple-scrapy-using-python/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Hengzhao Hong&#39;s Space">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Hengzhao Hong&#39;s Space">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/a-very-very-simple-scrapy-using-python/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Hengzhao Hong&#39;s Space">
+  <meta property="og:url" content="/post/a-very-very-simple-scrapy-using-python/">
+  <meta property="og:title" content="A Very Very Simple Scrapy Using Python | Hengzhao Hong&#39;s Space">
+  <meta property="og:description" content="Python in Practce"><meta property="og:image" content="/post/a-very-very-simple-scrapy-using-python/featured.jpg">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-06-10T15:03:04&#43;08:00">
+  
+  <meta property="article:modified_time" content="2019-06-10T15:03:04&#43;08:00">
+  
+
+  
+
+  
+
+  <title>A Very Very Simple Scrapy Using Python | Hengzhao Hong&#39;s Space</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Hengzhao Hong&#39;s Space</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#tags">
+            
+            <span>Topics</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="article-header d-xl-none">
+  <div class="featured-image" style="background-image: url('/post/a-very-very-simple-scrapy-using-python/featured_hu3d03a01dcc18bc5be0e67db3d8d209a6_3518139_800x0_resize_q90_lanczos.jpg');"></div>
+  
+</div>
+
+
+<div class="container-fluid split-header d-none d-xl-block">
+  <div class="row">
+    <div class="col-6">
+      <div class="split-header-content">
+        <h1 itemprop="name">A Very Very Simple Scrapy Using Python</h1>
+
+        
+        <p class="page-subtitle">Python in Practice</p>
+        
+
+        
+
+
+
+<meta content="2019-06-10 15:03:04 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-06-10 15:03:04 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="/authors/hengzhao-hong/">Hengzhao Hong</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 10, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/scrapy/">Scrapy</a>
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python&amp;url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fa-very-very-simple-scrapy-using-python%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f&amp;title=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f&amp;title=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python&amp;body=%2fpost%2fa-very-very-simple-scrapy-using-python%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="split-header-image">
+        <img src="/post/a-very-very-simple-scrapy-using-python/featured_hu3d03a01dcc18bc5be0e67db3d8d209a6_3518139_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="article-container d-xl-none">
+  <h1 itemprop="name">A Very Very Simple Scrapy Using Python</h1>
+
+  
+  <p class="page-subtitle">Python in Practice</p>
+  
+
+  
+
+
+
+<meta content="2019-06-10 15:03:04 &#43;0800 CST" itemprop="datePublished">
+<meta content="2019-06-10 15:03:04 &#43;0800 CST" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        
+
+      
+      
+      <a href="/authors/hengzhao-hong/">Hengzhao Hong</a></span></span>
+  
+
+
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 10, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/scrapy/">Scrapy</a>
+    
+  </span>
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python&amp;url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fa-very-very-simple-scrapy-using-python%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f&amp;title=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fa-very-very-simple-scrapy-using-python%2f&amp;title=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=A%20Very%20Very%20Simple%20Scrapy%20Using%20Python&amp;body=%2fpost%2fa-very-very-simple-scrapy-using-python%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>近日某深夜，一位在远方实习的舍友来请求我的帮助&hellip;他需要从<a href="https://whalewisdom.com/dashboard2/search/stock_screener" target="_blank">一个网站</a>上搜集近两年总共5万多条的基金季报数据（该数据属于公开数据），并把数据写入 Excel 文件保存。这是一个非常非常简单、基础的爬虫项目，很适合入门。</p>
+
+<blockquote>
+<p>什么是 Python 爬虫：</p>
+
+<p>简单地说，爬虫就是用程序代替人工来访问大量结构相似的网页，解析这些网页的内容，提取出自己想要的数据，最后并把收集到的数据储存到本地，用于进一步的研究分析。以上这些工作全部由编写好的 Python 程序自动化地完成。</p>
+
+<p>爬虫可以节省大量人力时间，完成人力所不能及的大规模网络数据采集任务。比如：</p>
+
+<ol>
+<li>访问一个信息公示网页内的几百页、上万个链接，从每个子链接点进去的表格中提取信息，形成一张汇总表格。</li>
+<li>下载关于某个主题的几百万张图片到本地的一个指定文件夹内。</li>
+<li>搜索、下载满足某个条件的一系列视频到本地。</li>
+<li>收集相同商品在不同市场上的价格，并实时更新。</li>
+</ol>
+
+<p>BTW, 舍友先拿着网站去问了淘宝代写爬虫的店家，这么简单的一个爬虫，店家居然要价 200&hellip;我<del>也有点心动</del>实在有点看不过去，钱有这么好赚吗&hellip;</p>
+</blockquote>
+
+<p><strong>爬虫需谨慎，本文的代码和数据都仅用于编程技术学习，请勿用于其他任何用途，否则造成的后果与本文作者无关。</strong></p>
+
+<h2 id="前提条件">前提条件</h2>
+
+<p>在真正编写一个爬虫之前，我们需要 Python 环境。这里强烈推荐直接安装 Anaconda (Python 3+)，它集成了 Python 环境、用于数据科学的 Python 库和一系列非常实用的工具。</p>
+
+<h3 id="安装-anaconda">安装 Anaconda</h3>
+
+<p>从 <a href="https://www.anaconda.com/distribution/" target="_blank">Anaconda 下载页面</a>安装 Anaconda。安装时有一步会询问是否将 python 加入环境变量（PATH），在那里请勾选“是”，继续安装。</p>
+
+<p>安装完成后，命令行输入 <code>python</code> 并回车，会出现类似下面的提示，说明环境搭建成功。</p>
+
+<pre><code>Python 3.7.1 (default, Dec 10 2018, 22:54:23) [MSC v.1915 64 bit (AMD64)] :: 
+Anaconda, Inc. on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 
+</code></pre>
+
+<blockquote>
+<p>如果此处报错，说明没有把 <code>python</code> 添加到系统环境变量里，查找 &ldquo;Anaconda 添加环境变量&rdquo; 的相关教程即可，这里不再赘述。</p>
+</blockquote>
+
+<h3 id="你还需要一个可以解析网络请求的浏览器-比如谷歌浏览器">你还需要一个可以解析网络请求的浏览器（比如谷歌浏览器）</h3>
+
+<p>爬虫的本质是<del>替你上网冲浪</del>模仿浏览器的行为访问网站，区别在于，得到服务器响应之后，爬虫和人工访问用的浏览器做的事不一样：</p>
+
+<ul>
+<li><strong>人工访问网站时，浏览器做的事</strong>：浏览器会向网站的服务器发送请求，得到服务器返回的文件，然后在浏览器中解析这些文件，形成内容、版式，最后构成一个网页展示给我们看。</li>
+<li><strong>程序访问网站时，程序所做的事</strong>：程序模仿浏览器，向网站的服务器发送和浏览器一模一样的请求，得到一模一样的返回文件，然后在程序中直接解析这些文件，直接提取我们想要的内容、数据，把它们储存到本地。</li>
+</ul>
+
+<p>显然，在一开始，我们的爬虫并不是一个成熟的爬虫，它需要我们代码的指引。为此，我们首先要知道浏览器请求这个网站时是怎么做的，才能让 Python 爬虫模仿它。</p>
+
+<p>在谷歌浏览器中，<code>点击右键-检查</code>（或者按 <code>F12</code>）进入浏览器控制台，在控制台中选择 Network 签页，按红点旁边的禁止图案清空已有记录，再访问我们要爬的网页，就可以读取到浏览器的发送的请求，以及服务器返回的具体文件了。其他浏览器有类似功能即可。</p>
+
+
+
+
+<figure>
+
+<img src="console.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>谷歌浏览器的控制台</h4>
+  
+</figcaption>
+
+</figure>
+
+<h2 id="分析网站-我们要爬什么">分析网站：我们要爬什么？</h2>
+
+<p>先分析网站很重要，可以帮我们发现最合适、高效的方法。</p>
+
+
+
+
+<figure>
+
+<img src="web1.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>网站页面概览</h4>
+  
+</figcaption>
+
+</figure>
+
+<p><a href="https://whalewisdom.com/dashboard2/search/stock_screener" target="_blank">从这里</a>打开我们要爬取的网站，我们可以看到，页面的表格就是我们想要获取的基金季报数据，默认只显示 2019 年第一季度的数据。我们通过筛选按钮，筛选出从 2018 年第一季度至 2019 年第一季度的所有基金季报数据（共 58169 条）。</p>
+
+
+
+
+<figure>
+
+<img src="web2.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>筛选我们需要的时间区间</h4>
+  
+</figcaption>
+
+</figure>
+
+<p>现在，网站页面显示，我们要爬取的表格有 2300 多页，每一页有 20 多行。</p>
+
+<p>要想把这些数据全部收集到 Excel 表格中，用人工显然是不可能的&hellip;&hellip;爬虫的优势这时就体现出来啦！</p>
+
+<h3 id="通过浏览器捕获请求">通过浏览器捕获请求</h3>
+
+<p>在设计任何爬虫时，<strong>我们首先都想尝试知道浏览器如何请求到新数据的</strong>，如果知道这一点，爬虫只需要构造一模一样的请求，就可以拿到数据，这是最<del>令人开心的</del>简单的爬虫情形。</p>
+
+<p>如何捕获到这个关键的请求呢？一个简单的方法：现代的网站开发中，为了提高用户体验，在需要更新某些内容时，网页往往只会更新 <em>需要更新的那部分</em> ，其他部分不会更新。因此，我们让这个网站面临一个只需要更新数据的情形 &mdash;&mdash; <strong>翻页</strong>。</p>
+
+<p>在谷歌浏览器中，<code>点击右键-检查</code>（或者按 <code>F12</code>）进入浏览器控制台，在控制台中选择 Network 签页，按红点旁边的禁止图案清空已有记录，然后<strong>翻页</strong>。我们<del>十分欣慰地</del>发现，在翻页的过程中，浏览器只向服务器发送了唯一一条请求，因此我们基本可以确定，新一页的数据就在这条新请求的返回结果中。</p>
+
+
+
+
+<figure>
+
+<img src="page.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>捕获翻页时发生的请求</h4>
+  
+</figcaption>
+
+</figure>
+
+<p>点击该请求，</p>
+
+<ul>
+<li>Headers 签页描述了浏览器向哪个地址请求数据、传递的参数是什么，以及服务器如何响应该请求。</li>
+<li>Preview 签页展示了服务器返回的内容</li>
+</ul>
+
+<p>我们选择 Preview 页签，看到的是一个结构化的数据，展开其中 rows 字段，可以看到里面就是我们在这一页想要的数据。</p>
+
+
+
+
+<figure>
+
+<img src="page2.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>服务器返回的内容</h4>
+  
+</figcaption>
+
+</figure>
+
+<p>找到关键请求之后，我们选择 Headers 页签，找到请求的 URL 和请求的方式（<code>GET</code>）。</p>
+
+
+
+
+<figure>
+
+<img src="page3.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>找到请求的 URL 和方式</h4>
+  
+</figcaption>
+
+</figure>
+
+<p>在 Headers 页签的最下方找到请求的参数。这个参数是被传递给服务器，服务器可以根据参数返回正确的数据。对照参数和当前网页的内容，可以看出：</p>
+
+<ul>
+<li><code>rows</code> 是每一页的行数</li>
+<li><code>page</code> 是当前页码（连续翻页观察请求的网址，也可以看出）</li>
+<li><code>sord</code> 是排序顺序（升序/降序）</li>
+<li><code>sidx</code> 是排序依据的字段名</li>
+<li><code>quarter_id[]</code> 则是之前选择的各个时间范围。</li>
+</ul>
+
+
+
+
+<figure>
+
+<img src="page4.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>请求的参数</h4>
+  
+</figcaption>
+
+</figure>
+
+<p>服务器根据这些参数查询数据，然后把数据返回给浏览器（这里被我们捕获），浏览器把数据填充进网页中，更新新一页的表格，完成翻页。整个请求的逻辑十分清晰<del>，爬虫写起来也就十分容易</del>。</p>
+
+<h2 id="编写爬虫">编写爬虫</h2>
+
+<p>新建文件 <code>web_scrapy.py</code>，用编辑器打开。</p>
+
+<blockquote>
+<p>没有安装编辑器的话，强烈推荐安装 <a href="https://code.visualstudio.com/" target="_blank">VS Code</a>，一个免费、开源又功能强大的编辑器，你不会后悔的。</p>
+</blockquote>
+
+<p>首先引入我们需要用到的三个库，</p>
+
+<pre><code># web_scrapy.py
+import time # 时间库，这里用于限制爬取的速度，否则程序的请求过快，可能影响到对方服务器的正常运行
+import requests # 访问互联网的库，这里用于模拟浏览器发送请求，并接受返回数据
+import pandas as pd # 数据处理库，这里用于将数据写入 Excel
+</code></pre>
+
+<p>设定爬虫的配置，后面会引用到这些变量。配置写在最前面，方便整个爬虫的维护。</p>
+
+<pre><code>speed_rate = 2 # 爬虫速度。这里把速度限制在人工访问的水平（每 2 秒请求一次），尽量避免影响服务器的正常运行
+row_per_page = 100 # 每页请求 100 行，经过尝试，这是一次请求能得到的最大行数，默认是每页 25 行，我们这样设置能极大提升爬虫效率，也使爬取速度能被限制成更慢的速度，避免影响对方服务器的正常运行
+</code></pre>
+
+<p>尝试请求第一个页面，</p>
+
+<pre><code># web_scrapy.py
+res = requests.get('https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;page=1&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69' % (row_per_page))
+records = res.json()
+</code></pre>
+
+<ul>
+<li><code>requests.get()</code> 函数里传入的是请求的目标 URL，我们从刚才捕获的请求中得到了单个页面的 URL，该函数使用 GET 方式向指定的 URL 发送网络请求</li>
+<li>URL 中，参数 <code>page=1</code>，我们请求的是第一页的数据</li>
+<li>URL 中，参数 <code>rows=%s</code>，使用了格式化字符串，将百分号后面的 <code>row_per_page</code> 变量输出到 <code>%s</code> 位置，从而配置了每页请求的行数。若看不懂该行语法，请复习 <a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017075323632896" target="_blank">Python 格式化字符串</a>。</li>
+<li><code>requests.get()</code> 返回的结果是一个 Response 对象，调用它的 <code>json()</code> 方法，我们得到 json 格式的返回数据，从浏览器控制台中该请求的 Preview 页签看得更美观一些。</li>
+</ul>
+
+<p>检查请求是否成功：</p>
+
+<pre><code># 打印请求状态码，200说明请求成功，404说明找不到页面，等等
+print(res.status_code)
+</code></pre>
+
+<pre><code>200
+</code></pre>
+
+<pre><code>print(records)
+</code></pre>
+
+<pre><code class="language-json">{'total': 582, 'facets': {'market_cap': [{'value': 1, 'count': 5916, 'is_true': True}, {'value': 2, 'count': 6792, 'is_true': True}, {'value': 3, 'count': 3370, 'is_true': True}, {'value': 4, 'count': 10731, 'is_true': True}, {'value': 5, 'count': 4249, 'is_true': True}, {'value': 6, 'count': 837, 'is_true': True}, {'value': 7, 'count': 711, 'is_true': True}], 'market_cap_13f': [{'value': 1, 'count': 36037, 'is_true': True}, {'value': 2, 'count': 7683, 'is_true': True}, {'value': 3, 'count': 3152, 'is_true': True}, {'value': 4, 'count': 8663, 'is_true': True}, {'value': 5, 'count': 2167, 'is_true': True}, {'value': 6, 'count': 289, 'is_true': True}, {'value': 7, 'count': 178, 'is_true': True}], 'turnover_13f': [{'value': 1, 'count': 11378, 'is_true': True}, {'value': 2, 'count': 768, 'is_true': True}, {'value': 3, 'count': 13493, 'is_true': True}, {'value': 4, 'count': 22213, 'is_true': True}, {'value': 5, 'count': 6041, 'is_true': True}, {'value': 6, 'count': 1202, 'is_true': True}], 'ranking': [{'value': 1, 'count': 280, 'is_true': True}, {'value': 2, 'count': 387, 'is_true': True}, {'value': 3, 'count': 717, 'is_true': True}, {'value': 4, 'count': 2142, 'is_true': True}, {'value': 5, 'count': 23239, 'is_true': True}, {'value': 6, 'count': 31376, 'is_true': True}], 'pe': [{'value': 1, 'count': 58169, 'is_true': True}], 'pe_next_year': [{'value': 1, 'count': 58160, 'is_true': True}, {'value': 3, 'count': 5, 'is_true': True}, {'value': 4, 'count': 4, 'is_true': True}], 'price_sales': [{'value': 1, 'count': 58169, 'is_true': True}], 'price_book': [{'value': 1, 'count': 58169, 'is_true': True}], 'dividend_yield': [], 'held_by': [{'value': 1, 'count': 23428, 'is_true': True}, {'value': 2, 'count': 6744, 'is_true': True}, {'value': 3, 'count': 5776, 'is_true': True}, {'value': 4, 'count': 6298, 'is_true': True}, {'value': 5, 'count': 15223, 'is_true': True}, {'value': 6, 'count': 700, 'is_true': True}], 'filer_ids': [], 'percent_change_in_shares_qoq': [{'value': 1, 'count': 4694, 'is_true': True}, {'value': 2, 'count': 14889, 'is_true': True}, {'value': 3, 'count': 4335, 'is_true': True}, {'value': 4, 'count': 2435, 'is_true': True}, {'value': 5, 'count': 1501, 'is_true': True}, {'value': 6, 'count': 2229, 'is_true': True}, {'value': 7, 'count': 16354, 'is_true': True}, {'value': 8, 'count': 4097, 'is_true': True}, {'value': 9, 'count': 2374, 'is_true': True}, {'value': 10, 'count': 2182, 'is_true': True}], 'percent_change_in_filers_qoq': [{'value': 1, 'count': 14783, 'is_true': True}, {'value': 2, 'count': 10969, 'is_true': True}, {'value': 3, 'count': 5392, 'is_true': True}, {'value': 4, 'count': 2806, 'is_true': True}, {'value': 5, 'count': 1765, 'is_true': True}, {'value': 6, 'count': 545, 'is_true': True}, {'value': 7, 'count': 11159, 'is_true': True}, {'value': 8, 'count': 4832, 'is_true': True}, {'value': 9, 'count': 2305, 'is_true': True}, {'value': 10, 'count': 539, 'is_true': True}], 'quarter_id': [{'value': 71, 'count': 11767, 'is_true': True}, {'value': 72, 'count': 11701, 'is_true': True}, {'value': 73, 'count': 11611, 'is_true': True}, {'value': 69, 'count': 11588, 'is_true': True}, {'value': 70, 'count': 11502, 'is_true': True}], 'sector': [{'value': 'FINANCE', 'count': 18660, 'is_true': True}, {'value': 'UNKNOWN', 'count': 7284, 'is_true': True}, {'value': 'HEALTH CARE', 'count': 4859, 'is_true': True}, {'value': 'INFORMATION TECHNOLOGY', 'count': 3745, 'is_true': True}, {'value': 'INDUSTRIALS', 'count': 3502, 'is_true': True}, {'value': 'CONSUMER DISCRETIONARY', 'count': 3447, 'is_true': True}, {'value': 'MUTUAL FUND', 'count': 3406, 'is_true': True}, {'value': 'MATERIALS', 'count': 2867, 'is_true': True}, {'value': 'ENERGY', 'count': 2630, 'is_true': True}, {'value': 'REAL ESTATE', 'count': 2372, 'is_true': True}, {'value': 'CONSUMER STAPLES', 'count': 1622, 'is_true': True}, {'value': 'UTILITIES AND TELECOMMUNICATIONS', 'count': 1556, 'is_true': True}, {'value': 'COMMUNICATIONS', 'count': 1306, 'is_true': True}, {'value': 'TRANSPORTS', 'count': 733, 'is_true': True}, {'value': 'UTILITIES', 'count': 76, 'is_true': True}, {'value': 'Communications', 'count': 60, 'is_true': True}, {'value': 'Utilities', 'count': 22, 'is_true': True}, {'value': '', 'count': 10, 'is_true': True}, {'value': 'Consumer Staples', 'count': 5, 'is_true': True}, {'value': 'Transports', 'count': 4, 'is_true': True}, {'value': 'Health Care', 'count': 3, 'is_true': True}], 'industry': []}, 'records': 58169, 'page': 1, 'sort': 'score', 'dir': 'desc', 'rows': [{'id': '1470482', 'score': None, 'permalink': 'aeis', 'symbol': 'AEIS', 'name': 'ADVANCED ENERGY INDUSTRIES INC', 'held_by': 292, 'market_cap': 2306173000.0, 'market_cap_13f': 2132144670.0, 'dividend_yield': None, 'pe': None, 'turnover': 28.343948, 'percent_change_in_mv_qoq': -8.273920042454789, 'percent_change_in_shares_qoq': 0.8444298, 'percent_change_in_filers_qoq': -7.0063696, 'pe_next_year': None, 'average_ranking': 902, 'quarter': 'Q2 2018', 'sector': 'INFORMATION TECHNOLOGY', 'industry': 'SEMICONDUCTORS'}, ...]}
+</code></pre>
+
+<p>返回的 json 里（从浏览器请求的 Preview 页签中看），<code>records</code> 字段是总数据量，<code>rows</code> 是每页请求的数据量，<code>total</code> 字段是根据 <code>rows</code> 的总页数，利用这些信息，我们可以估计爬取时间，从而合理地调整速度和每页请求量。</p>
+
+<blockquote>
+<p>由于学习的目的，爬取速度在允许的情况下尽量限制得慢一点，避免影响对方服务器正常运行。</p>
+</blockquote>
+
+<pre><code>print('总数据量：%s' % records['records'])
+print('每页数据量：%s' % len(records['rows']))
+min_request_time = records['records']//len(records['rows']) + 1
+print('最少请求次数：%s 次' % (min_request_time))
+print('爬取速度设定为：每 %.2f 秒请求一次' % speed_rate)
+expected_time_spend = min_request_time*speed_rate
+print('预计耗时：%.2f 秒 = %.2f 分钟 = %.2f 小时' % (expected_time_spend, expected_time_spend/60, expected_time_spend/3600))
+</code></pre>
+
+<blockquote>
+<p>若以上语法看不懂，请复习 <a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017075323632896" target="_blank">Python 格式化字符串</a>。</p>
+</blockquote>
+
+<p>输出结果：</p>
+
+<pre><code>总数据量：58169
+每页数据量：100
+最少请求次数：582 次
+爬取速度设定为：每 2.00 秒请求一次
+预计耗时：1164.00 秒 = 19.40 分钟 = 0.32 小时
+</code></pre>
+
+<p>之前，连续翻页时分析请求，我们发现 URL 中只有 page 参数发生了变化。因此，要想爬取全部数据，我们只需写一个循环，每次循环改变 page 参数值，就可以爬下全部页面的数据了。</p>
+
+<pre><code># 定义一个空数组，用于存放爬下来的全部数据
+result_data = []
+
+# 循环爬取每一个页面，数据写入刚才的空数组中
+for i in range(min_request_time):
+    # 使用格式化字符串的语法，先生成 URL
+    url = 'https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;page=%s&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69' % (row_per_page, i+1)
+
+    # 发起请求，打印请求的状态和 URL。这样爬虫运行的时候可以把握进度。
+    res = requests.get(url)
+    print('%s %s' % (res.status_code, res.url))
+    records = res.json()
+
+    # 数据就在每个 json 返回结果的 rows 字段中，前面已分析。
+    data = records['rows']
+
+    # 重命名变量，并把结果追加写入数组中
+    for row in data:
+        result_data.append({
+            'Quarter': row['quarter'],
+            'Name': row['name'],
+            'Ticker': row['symbol'],
+            'Sector': row['sector'],
+            'Industry': row['industry'],
+            '# Held_By': row['held_by'],
+            'Overall_Market_Cap': row['market_cap'],
+            '13F Market Cap ': row['market_cap_13f'],
+            'QoQ % Change in 13F Market Cap': row['percent_change_in_mv_qoq'],
+            '13F Turnover ': row['turnover'],
+            'Avg 13F Ranking ': row['average_ranking'],
+            '% Change in Filers': row['percent_change_in_filers_qoq'],
+            '% Change in Shares': row['percent_change_in_shares_qoq']
+        })
+    
+    # 十分重要，让程序在指定时间后才继续进入下一次循环，这里是 2 秒，speed_rate = 2
+    # 限制了爬虫请求速度最快为 2 秒一次
+    time.sleep(speed_rate)
+</code></pre>
+
+<p>爬虫项目的网络数据采集部分到此完成，循环结束后，<code>result_data</code> 变量即为爬取得到的数据。接下来我们将数据写入 Excel 表格中。</p>
+
+<h2 id="储存数据">储存数据</h2>
+
+<p>写入 Excel 也很简单，使用开头引入的 <code>pandas</code> 库即可。</p>
+
+<pre><code># 定义变量在表格中展示的顺序
+result_order = [
+        'Quarter',
+        'Name',
+        'Ticker',
+        'Sector',
+        'Industry',
+        '# Held_By',
+        'Overall_Market_Cap',
+        '13F Market Cap ',
+        'QoQ % Change in 13F Market Cap',
+        '13F Turnover ',
+        'Avg 13F Ranking ',
+        '% Change in Filers',
+        '% Change in Shares'
+    ]
+
+# 使用 result_data 数组生成数据表格 DataFrame 对象，这里 pd 来自最开始引入的 pandas 库
+result_df = pd.DataFrame.from_records(data = result_data)
+
+# 调整变量在表格中展示的顺序
+result_df = result_df[result_order]
+
+# 将 DataFrame 对象写入 Excel 文件中，文件名为 data.xlsx，Sheet 名为 data
+result_df.to_excel(&quot;data.xlsx&quot;, sheet_name='data', index = False)
+</code></pre>
+
+<blockquote>
+<p>若在 Jupyter Notebook 中运行，直接执行 <code>result_df</code> 也可以看到最终的数据表。</p>
+</blockquote>
+
+<h2 id="完整代码">完整代码</h2>
+
+<pre><code># web_scrapy.py
+
+import time # 时间库，这里用于限制爬取的速度，否则程序的请求过快，可能影响到对方服务器的正常运行
+import requests # 访问互联网的库，这里用于模拟浏览器发送请求，并接受返回数据
+import pandas as pd # 数据处理库，这里用于将数据写入 Excel
+
+# 配置
+speed_rate = 2
+row_per_page = 100
+
+# 预先请求一次，估计爬虫时间等信息
+res = requests.get('https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;page=1&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69' % (row_per_page))
+records = res.json()
+# print(res.status_code)
+# print(records)
+
+print('总数据量：%s' % records['records'])
+print('每页数据量：%s' % len(records['rows']))
+min_request_time = records['records']//len(records['rows']) + 1
+print('最少请求次数：%s 次' % (min_request_time))
+print('爬取速度设定为：每 %.2f 秒请求一次' % speed_rate)
+expected_time_spend = min_request_time*speed_rate
+print('预计耗时：%.2f 秒 = %.2f 分钟 = %.2f 小时' % (expected_time_spend, expected_time_spend/60, expected_time_spend/3600))
+
+# 下面爬取全部页面的数据
+
+# 定义一个空数组，用于存放爬下来的全部数据
+result_data = []
+
+# 循环爬取每一个页面，数据写入刚才的空数组中
+for i in range(min_request_time):
+    # 使用格式化字符串的语法，先生成 URL
+    url = 'https://whalewisdom.com/dashboard/stock_screener_query?rows=%s&amp;page=%s&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69' % (row_per_page, i+1)
+
+    # 发起请求，打印请求的状态和 URL。这样爬虫运行的时候可以把握进度。
+    res = requests.get(url)
+    print('%s %s' % (res.status_code, res.url))
+    records = res.json()
+
+    # 数据就在每个 json 返回结果的 rows 字段中，前面已分析。
+    data = records['rows']
+
+    # 重命名变量，并把结果追加写入数组中
+    for row in data:
+        result_data.append({
+            'Quarter': row['quarter'],
+            'Name': row['name'],
+            'Ticker': row['symbol'],
+            'Sector': row['sector'],
+            'Industry': row['industry'],
+            '# Held_By': row['held_by'],
+            'Overall_Market_Cap': row['market_cap'],
+            '13F Market Cap ': row['market_cap_13f'],
+            'QoQ % Change in 13F Market Cap': row['percent_change_in_mv_qoq'],
+            '13F Turnover ': row['turnover'],
+            'Avg 13F Ranking ': row['average_ranking'],
+            '% Change in Filers': row['percent_change_in_filers_qoq'],
+            '% Change in Shares': row['percent_change_in_shares_qoq']
+        })
+    
+    # 十分重要，让程序在指定时间后才继续进入下一次循环，这里是 2 秒，speed_rate = 2
+    # 限制了爬虫请求速度最快为 2 秒一次
+    time.sleep(speed_rate)
+
+# 定义变量在表格中展示的顺序
+result_order = [
+        'Quarter',
+        'Name',
+        'Ticker',
+        'Sector',
+        'Industry',
+        '# Held_By',
+        'Overall_Market_Cap',
+        '13F Market Cap ',
+        'QoQ % Change in 13F Market Cap',
+        '13F Turnover ',
+        'Avg 13F Ranking ',
+        '% Change in Filers',
+        '% Change in Shares'
+    ]
+
+# 使用 result_data 数组生成数据表格 DataFrame 对象，这里 pd 来自最开始引入的 pandas 库
+result_df = pd.DataFrame.from_records(data = result_data)
+
+# 调整变量在表格中展示的顺序
+result_df = result_df[result_order]
+
+# 将 DataFrame 对象写入 Excel 文件中，文件名为 data.xlsx，Sheet 名为 data
+result_df.to_excel(&quot;data.xlsx&quot;, sheet_name='data', index = False)
+</code></pre>
+
+<h2 id="运行爬虫与成果">运行爬虫与成果</h2>
+
+<p>运行该 py 文件即可。</p>
+
+<ul>
+<li>相同目录下打开命令行，执行 <code>python web_scrapy.py</code> 即可</li>
+<li>也可以将代码复制进 Jupyter Notebook 运行</li>
+<li>可以使用 VS Code 运行和调试该文件</li>
+</ul>
+
+<p>输出结果如下示例，每2秒会发起一个新请求，因而每两秒打印一条请求记录，作为爬虫日志。</p>
+
+<pre><code class="language-bash">总数据量：58169
+每页数据量：100
+最少请求次数：582 次
+爬取速度设定为：每 2.00 秒请求一次
+预计耗时：1164.00 秒 = 19.40 分钟 = 0.32 小时
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=1&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=2&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=3&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=4&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=5&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=6&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=7&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=8&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+200 https://whalewisdom.com/dashboard/stock_screener_query?rows=100&amp;page=9&amp;sidx=score&amp;sord=desc&amp;or_filers=0&amp;quarter_id[]=73&amp;quarter_id[]=72&amp;quarter_id[]=71&amp;quarter_id[]=70&amp;quarter_id[]=69
+...
+</code></pre>
+
+<p>得到 Excel 数据文件（示例，可能顺序有所差别）：</p>
+
+
+
+
+<figure>
+
+<img src="res.png" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" class="numbered">
+  <h4>Excel 数据文件</h4>
+  
+</figcaption>
+
+</figure>
+
+<h2 id="结语">结语</h2>
+
+<p>这是一个非常简单的爬虫，但一开始没有经过那些请求分析的话，入门可能依然毫无头绪，写的爬虫也会更为复杂。</p>
+
+<p>在更严谨的爬虫中，我们需要用 <code>try...except...finally...</code> 语法对请求失败的情况进行处理（重试等等，关于该语法请复习<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736" target="_blank">这里</a>），微调代码即可。</p>
+
+<p>在这个爬虫中，我们通过翻页的动作找到了浏览器请求新数据的关键请求，从而能直接构造这个请求得到数据。在另一些情况中，这个关键请求难以捕获，如果捕获不到数据生产的“过程”，那么我们只能从我们看到的最终网页“结果”出发，用程序（Python 的 BeautifulSoup4 库）来解析最终的 html 网页文件，从众多标签中分离出我们需要的数据储存起来，那种方法显然也能爬取本文所爬取的网站<del>（下一篇入门教程就决定是它了）</del>，但它不比本文的这类方法高效（还需要额外处理该网站的动态加载问题），得到的数据精度（对比网页数据和请求的数据可以看出这一点）、运行效率也不如直接捕获“过程”的这类程序来得好，那种方法是本文这类方法行不通时的另一个通用策略，也仍是值得进一步学习的重要技术之一。</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/python/">Python</a>
+  
+  <a class="badge badge-light" href="/tags/abc/">ABC</a>
+  
+</div>
+
+
+
+
+    
+      
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/a-sketch-of-git-theory/">A Sketch of Git Theory</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy;Hengzhao Hong 2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.d7381f2d79e6271d4da28f474f49096c.js"></script>
+
+  </body>
+</html>
+

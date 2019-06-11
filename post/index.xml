@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;Hengzhao Hong 2019</copyright>
-    <lastBuildDate>Wed, 20 Mar 2019 21:34:55 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jun 2019 15:03:04 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A Very Very Simple Scrapy Using Python</title>
+      <link>/post/a-very-very-simple-scrapy-using-python/</link>
+      <pubDate>Mon, 10 Jun 2019 15:03:04 +0800</pubDate>
+      
+      <guid>/post/a-very-very-simple-scrapy-using-python/</guid>
+      <description>近日某深夜，一位在远方实习的舍友来请求我的帮助&amp;hellip;他需要从一个网站上搜集近两年总共5万多条的基金季报数据（该数据属于公开数据），</description>
+    </item>
     
     <item>
       <title>A Guidance to Beautiful Jekyll Pages</title>
