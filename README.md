@@ -2,6 +2,8 @@
 
 Welcome to [Hengzhao Hong's Space](https://hengzhaohong.github.io).
 
+（我的个人主页）
+
 ## 关于初衷
 
 我是一个喜欢写作、喜欢折腾自己的人，从内容和版式上，现在的博客和以前的差别很大，但我还是在这里简单记下此博客诞生的**初衷**吧。
