@@ -28,7 +28,7 @@
   
     
   
-  <meta name="description" content="Python in Practce">
+  <meta name="description" content="Python in Practice">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/a-very-very-simple-scrapy-using-python/">
@@ -119,7 +119,7 @@
   <meta property="og:site_name" content="Hengzhao Hong&#39;s Space">
   <meta property="og:url" content="/post/a-very-very-simple-scrapy-using-python/">
   <meta property="og:title" content="A Very Very Simple Scrapy Using Python | Hengzhao Hong&#39;s Space">
-  <meta property="og:description" content="Python in Practce"><meta property="og:image" content="/post/a-very-very-simple-scrapy-using-python/featured.jpg">
+  <meta property="og:description" content="Python in Practice"><meta property="og:image" content="/post/a-very-very-simple-scrapy-using-python/featured.jpg">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-06-10T15:03:04&#43;08:00">
@@ -858,7 +858,7 @@ records = res.json()
 <li><code>requests.get()</code> 返回的结果是一个 Response 对象，调用它的 <code>json()</code> 方法，我们得到 json 格式的返回数据，从浏览器控制台中该请求的 Preview 页签看得更美观一些。</li>
 </ul>
 
-<p>检查请求是否成功：</p>
+<p>检查请求是否成功：、</p>
 
 <pre><code># 打印请求状态码，200说明请求成功，404说明找不到页面，等等
 print(res.status_code)
@@ -866,6 +866,10 @@ print(res.status_code)
 
 <pre><code>200
 </code></pre>
+
+<blockquote>
+<p><strong>请求状态码的含义速记：</strong>以 2 开头的状态码意味着请求成功，以 4 或 5 开头的状态码意味着请求失败，详情可参考 <a href="https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Status-Codes" target="_blank">W3C’s Status Code Definitions</a>。</p>
+</blockquote>
 
 <pre><code>print(records)
 </code></pre>
@@ -1123,7 +1127,7 @@ result_df.to_excel(&quot;data.xlsx&quot;, sheet_name='data', index = False)
 
 <p>这是一个非常简单的爬虫，但一开始没有经过那些请求分析的话，入门可能依然毫无头绪，写的爬虫也会更为复杂。</p>
 
-<p>在更严谨的爬虫中，我们需要用 <code>try...except...finally...</code> 语法对请求失败的情况进行处理（重试等等，关于该语法请复习<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736" target="_blank">这里</a>），微调代码即可。</p>
+<p>在更严谨的爬虫中，我们需要用 <code>try...except...finally...</code> 语法对请求失败的情况进行处理（比如重试请求等等），这样能避免因为一个小的请求错误导致整个爬虫中断。只需微调代码即可（关于该语法可复习<a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736" target="_blank">这里</a>。</p>
 
 <p>在这个爬虫中，我们通过翻页的动作找到了浏览器请求新数据的关键请求，从而能直接构造这个请求得到数据。在另一些情况中，这个关键请求难以捕获，如果捕获不到数据生产的“过程”，那么我们只能从我们看到的最终网页“结果”出发，用程序（Python 的 BeautifulSoup4 库）来解析最终的 html 网页文件，从众多标签中分离出我们需要的数据储存起来，那种方法显然也能爬取本文所爬取的网站<del>（下一篇入门教程就决定是它了）</del>，但它不比本文的这类方法高效（还需要额外处理该网站的动态加载问题），得到的数据精度（对比网页数据和请求的数据可以看出这一点）、运行效率也不如直接捕获“过程”的这类程序来得好，那种方法是本文这类方法行不通时的另一个通用策略，也仍是值得进一步学习的重要技术之一。</p>
 

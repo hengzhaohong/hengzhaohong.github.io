@@ -261,7 +261,7 @@ records = res.json()
 &lt;li&gt;&lt;code&gt;requests.get()&lt;/code&gt; 返回的结果是一个 Response 对象，调用它的 &lt;code&gt;json()&lt;/code&gt; 方法，我们得到 json 格式的返回数据，从浏览器控制台中该请求的 Preview 页签看得更美观一些。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;检查请求是否成功：&lt;/p&gt;
+&lt;p&gt;检查请求是否成功：、&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# 打印请求状态码，200说明请求成功，404说明找不到页面，等等
 print(res.status_code)
@@ -269,6 +269,10 @@ print(res.status_code)
 
 &lt;pre&gt;&lt;code&gt;200
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;请求状态码的含义速记：&lt;/strong&gt;以 2 开头的状态码意味着请求成功，以 4 或 5 开头的状态码意味着请求失败，详情可参考 &lt;a href=&#34;https://www.w3.org/Protocols/HTTP/1.1/draft-ietf-http-v11-spec-01#Status-Codes&#34; target=&#34;_blank&#34;&gt;W3C’s Status Code Definitions&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;print(records)
 &lt;/code&gt;&lt;/pre&gt;
@@ -526,7 +530,7 @@ result_df.to_excel(&amp;quot;data.xlsx&amp;quot;, sheet_name=&#39;data&#39;, ind
 
 &lt;p&gt;这是一个非常简单的爬虫，但一开始没有经过那些请求分析的话，入门可能依然毫无头绪，写的爬虫也会更为复杂。&lt;/p&gt;
 
-&lt;p&gt;在更严谨的爬虫中，我们需要用 &lt;code&gt;try...except...finally...&lt;/code&gt; 语法对请求失败的情况进行处理（重试等等，关于该语法请复习&lt;a href=&#34;https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;），微调代码即可。&lt;/p&gt;
+&lt;p&gt;在更严谨的爬虫中，我们需要用 &lt;code&gt;try...except...finally...&lt;/code&gt; 语法对请求失败的情况进行处理（比如重试请求等等），这样能避免因为一个小的请求错误导致整个爬虫中断。只需微调代码即可（关于该语法可复习&lt;a href=&#34;https://www.liaoxuefeng.com/wiki/1016959663602400/1017598873256736&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;在这个爬虫中，我们通过翻页的动作找到了浏览器请求新数据的关键请求，从而能直接构造这个请求得到数据。在另一些情况中，这个关键请求难以捕获，如果捕获不到数据生产的“过程”，那么我们只能从我们看到的最终网页“结果”出发，用程序（Python 的 BeautifulSoup4 库）来解析最终的 html 网页文件，从众多标签中分离出我们需要的数据储存起来，那种方法显然也能爬取本文所爬取的网站&lt;del&gt;（下一篇入门教程就决定是它了）&lt;/del&gt;，但它不比本文的这类方法高效（还需要额外处理该网站的动态加载问题），得到的数据精度（对比网页数据和请求的数据可以看出这一点）、运行效率也不如直接捕获“过程”的这类程序来得好，那种方法是本文这类方法行不通时的另一个通用策略，也仍是值得进一步学习的重要技术之一。&lt;/p&gt;
 </description>
